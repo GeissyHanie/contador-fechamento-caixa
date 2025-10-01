@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fechamento de Caixa - Contagem</title>
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+
+    <header>
+        <img src="B:\BACKUP_GEISSY_11_09_25\Doces e Mimos\ARTES\logo_bomboniere.png" alt="Logo da Bomboniere" id="logo">
+        <h1>Fechamento de Caixa</h1>
+    </header>
+    
+     <main>
+        
+        <div id="contagem-container">
+
+            <div class="step active" data-valor="100.00" data-id="nota_100">
+                <label for="quantidade_100">Informe a quantidade de notas de R$ 100,00:</label>
+                <input type="number" id="quantidade_100" min="0" value="0" class="quantidade">
+            </div>
+
+            <div class="step" data-valor="50.00" data-id="nota_50">
+                <label for="quantidade_50">Informe a quantidade de notas de R$ 50,00:</label>
+                <input type="number" id="quantidade_50" min="0" value="0" class="quantidade">
+            </div>
+            
+            <div class="step" data-valor="20.00" data-id="nota_20">
+                <label for="quantidade_20">Informe a quantidade de notas de R$ 20,00:</label>
+                <input type="number" id="quantidade_20" min="0" value="0" class="quantidade">
+            </div>
+
+            <div class="step" data-valor="10.00" data-id="nota_10">
+                <label for="quantidade_10">Informe a quantidade de notas de R$ 10,00:</label>
+                <input type="number" id="quantidade_10" min="0" value="0" class="quantidade">
+            </div>
+
+            <div class="step" data-valor="5.00" data-id="nota_5">
+                <label for="quantidade_5">Informe a quantidade de notas de R$ 5,00:</label>
+                <input type="number" id="quantidade_5" min="0" value="0" class="quantidade">
+            </div>
+
+            <div class="step" data-valor="1.00" data-id="moeda_1">
+                <label for="quantidade_1">Informe a quantidade de moedas de R$ 1,00:</label>
+                <input type="number" id="quantidade_1" min="0" value="0" class="quantidade">
+            </div>
+
+            <div class="step" data-valor="0.50" data-id="moeda_50">
+                <label for="quantidade_0.50">Informe a quantidade de moedas de R$ 0,50:</label>
+                <input type="number" id="quantidade_0.50" min="0" value="0" class="quantidade">
+            </div>
+
+            <div class="step" data-valor="0.25" data-id="moeda_25">
+                <label for="quantidade_0.25">Informe a quantidade de notas de R$ 0,25:</label>
+                <input type="number" id="quantidade_0.25" min="0" value="0" class="quantidade">
+            </div>
+
+            <div class="step" data-valor="0.10" data-id="moeda_10">
+                <label for="quantidade_0.10">Informe a quantidade de moedas de R$ 0,10:</label>
+                <input type="number" id="quantidade_10" min="0" value="0" class="quantidade">
+            </div>
+
+            <div class="step" data-valor="0.05" data-id="moeda_5">
+                <label for="quantidade_0.05">Informe a quantidade de moedas de R$ 0,05:</label>
+                <input type="number" id="quantidade_50" min="0" value="0" class="quantidade">
+            </div>
+
+            <button id="confirmar-proximo">Confirmar e Próximo</button>
+            <p id="mensagem-erro" style="color: red; display: none;">Preencha a quantidade para continuar.</p>
+        </div>
+
+        <hr>
+        
+        <h2>Total em Dinheiro: <span id="saldo-total">R$ 0,00</span></h2>
+        
+    </main>
+
+    <script src="script.js"></script> 
+</body>
+</html>
