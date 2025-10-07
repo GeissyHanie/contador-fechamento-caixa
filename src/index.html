@@ -17,8 +17,10 @@
         
         <div id="contagem-container">
 
-            <div class="step active" data-valor="100.00" data-id="nota_100">
-                <label for="quantidade_100">Informe a quantidade de notas de R$ 100,00:</label>
+            <img src="..\assets\nota100.jpeg" alt="Nota de 100" id="nota_cem">
+
+            <div class="step active" id="qtd" data-valor="100.00" data-id="nota_100">
+                <label for="quantidade_100">Quantidade</label>
                 <input type="number" id="quantidade_100" min="0" value="0" class="quantidade">
             </div>
 
@@ -59,15 +61,15 @@
 
             <div class="step" data-valor="0.10" data-id="moeda_10">
                 <label for="quantidade_0.10">Informe a quantidade de moedas de R$ 0,10:</label>
-                <input type="number" id="quantidade_10" min="0" value="0" class="quantidade">
+                <input type="number" id="quantidade_010" min="0" value="0" class="quantidade">
             </div>
 
             <div class="step" data-valor="0.05" data-id="moeda_5">
                 <label for="quantidade_0.05">Informe a quantidade de moedas de R$ 0,05:</label>
-                <input type="number" id="quantidade_50" min="0" value="0" class="quantidade">
+                <input type="number" id="quantidade_005" min="0" value="0" class="quantidade">
             </div>
 
-            <button id="confirmar-proximo">Confirmar e Próximo</button>
+            <button id="confirmar-proximo">Confirmar e Próximogi</button>
             <p id="mensagem-erro">Preencha a quantidade para continuar.</p>
         </div>
 
