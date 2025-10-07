@@ -9,12 +9,6 @@ body {
     margin-bottom: 0px;
 }
 
-h1 {
-    margin-top: 10px; 
-    margin-bottom: 10px;
-    margin-top: 0px;
-}
-
 header {
     margin-bottom: 0px; 
     padding-bottom: 0px;
@@ -34,6 +28,7 @@ header h1 {
     border: 2px solid #f5b6d2; 
     border-radius: 10px;
     background-color: #fff;
+    margin-top: 3rem;
 }
 
 #mensagem-erro {
