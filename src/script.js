@@ -1,10 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Definições de Elementos e Variáveis de Estado
     const steps = document.querySelectorAll('.step');
-    console.log("Total de etapas encontradas:", steps.length); 
     const btnProximo = document.getElementById('confirmar-proximo');
-    const saldoTotalSpan = document.getElementById('saldo-parcial-total');
+    const resumoFinalDiv = document.getElementById('resumo-final');
+    const saldoTotalSpan = document.getElementById('saldo-total');
     const msgErro = document.getElementById('mensagem-erro');
+    const tituloPrincipal = document.getElementById('titulo-principal');
     
     let currentIndex = 0;
     // Objeto onde salvaremos todas as contagens e o total
@@ -30,88 +31,115 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     // 2. Função de Formatação e Atualização do Total
-    function formatarMoeda(valor) {
-        return `R$ ${valor.toFixed(2).replace('.', ',')}`;
-    }
+function formatarMoeda(valor) {
+    return `R$ ${valor.toFixed(2).replace('.', ',')}`;
+}
 
-    function atualizarSaldoTotal() {
-        saldoTotalSpan.textContent = formatarMoeda(resultadoContagem.totalDinheiro);
-    }
+function atualizarSaldoTotal() {
+    // Mude de resumoFinalDiv para saldoTotalSpan!
+    saldoTotalSpan.textContent = formatarMoeda(resultadoContagem.totalDinheiro);
+}
 
     // 3. Função de Navegação e Cálculo Principal
-    function avancarEtapa(event) {
-        // Pega a etapa ATUAL
-        if (event) event.preventDefault();
-        console.log("Botão clicado! Tentando avançar para a etapa:", currentIndex + 1);
-        const currentStepElement = steps[currentIndex];
-        const input = currentStepElement.querySelector('.quantidade');
-        
-        // --- Validação ---
-        const quantidade = parseInt(input.value);
-        if (isNaN(quantidade) || quantidade < 0) {
-             msgErro.textContent = 'Por favor, digite um valor válido (0 ou mais).';
-             msgErro.style.display = 'block';
-             return;
-        }
-        msgErro.style.display = 'none';
+function avancarEtapa(event) {
+    if (event) event.preventDefault();
+    
+    // 1. DECLARA A ETAPA ANTERIOR (a que está sendo contada AGORA)
+    const etapaAnterior = DENOMINACOES[currentIndex];
+    
+    // 2. Pega o elemento e input atuais
+    const currentStepElement = steps[currentIndex];
+    const input = currentStepElement.querySelector('.quantidade');
+    
+    // --- Validação ---
+    const quantidade = parseInt(input.value);
+    if (isNaN(quantidade) || quantidade < 0) {
+         msgErro.textContent = 'Por favor, digite um valor válido (0 ou mais).';
+         msgErro.style.display = 'block';
+         return;
+    }
+    msgErro.style.display = 'none';
 
-        // --- Cálculo e Armazenamento ---
-        const valorUnitario = parseFloat(currentStepElement.getAttribute('data-valor'));
-        const id = currentStepElement.getAttribute('data-id');
-        
-        const valorTotalDaDenominacao = quantidade * valorUnitario;
+    // --- Cálculo e Armazenamento (USANDO O ARRAY DENOMINACOES) ---
+    // A condição 'currentIndex < DENOMINACOES.length' é redundante aqui se você
+    // estiver garantindo que a última etapa sempre será o resultado final.
+    // Mas vamos manter a checagem por segurança.
+    if (currentIndex < DENOMINACOES.length) {
+        // Agora etapaAnterior.valor e etapaAnterior.id EXISTEM!
+        const valorTotalDaDenominacao = quantidade * etapaAnterior.valor;
         
         // Adiciona ao total geral
         resultadoContagem.totalDinheiro += valorTotalDaDenominacao;
         
         // Armazena o detalhe para o relatório final
-        resultadoContagem.detalhes[id] = { quantidade: quantidade, valor: valorTotalDaDenominacao };
+        resultadoContagem.detalhes[etapaAnterior.id] = { 
+            quantidade: quantidade, 
+            valorUnitario: etapaAnterior.valor, // Boa prática para o relatório
+            valorTotal: valorTotalDaDenominacao 
+        };
+    }
+    
+    // A chamada 'atualizarSaldoTotal()' ainda está comentada, o que é OK
+    // se você só quiser ver o total no final (conforme o nosso último plano).
+    
+    // --- Transição de Etapas ---
+    
+    // 1. Oculta a etapa atual
+    currentStepElement.style.display = 'none';
 
-        // Atualiza a exibição na parte inferior da tela
-        atualizarSaldoTotal();
+    // 2. Avança o índice
+    currentIndex++;
+
+    if (currentIndex < steps.length) {
+        // Se houver próxima etapa, mostra e foca no input
+        const nextStepElement = steps[currentIndex];
+        nextStepElement.style.display = 'block';
         
-        // --- Transição de Etapas ---
-        
-        // 1. Oculta a etapa atual
-        currentStepElement.style.display = 'none';
-        //currentStepElement.classList.remove('active');
-
-        // 2. Avança o índice
-        currentIndex++;
-
-        if (currentIndex < steps.length) {
-            // Se houver próxima etapa, mostra e foca no input
-            const nextStepElement = steps[currentIndex];
-            nextStepElement.style.display = 'block';
-            //nextStepElement.classList.add('active');
-            
-            // Foca automaticamente no campo para facilitar a digitação
-            const nextInput = nextStepElement.querySelector('.quantidade');
-            if (nextInput) nextInput.focus();
-                nextInput.focus();
-                 nextInput.value = 0;
-                 
-        } else {
-            // Fim da Contagem
-            btnProximo.textContent = 'CONTAGEM FINALIZADA!';
-            btnProximo.disabled = true;
-            
-            // Aqui você deve iniciar a próxima fase: a exibição do relatório final e o envio para o servidor (Backend)
-            exibirResultadoFinal(); 
+        // Foca automaticamente no campo
+        const nextInput = nextStepElement.querySelector('.quantidade');
+        if (nextInput) {
+            nextInput.focus();
+            nextInput.value = 0;
         }
-    }
+   } else {
+    // Fim da Contagem
 
-    // 4. Função para Exibir o Resumo Final (Próximo Passo Lógico)
-    function exibirResultadoFinal() {
-        alert(`Contagem Concluída! Total em Dinheiro: ${formatarMoeda(resultadoContagem.totalDinheiro)}`);
-        
-        // A próxima funcionalidade seria:
-        // 1. Mostrar o Saldo Esperado (que viria do Backend ou de outro lugar)
-        // 2. Calcular a Diferença (Saldo Físico - Saldo Esperado)
-        // 3. Mostrar o formulário de Observações e o botão ENVIAR para o servidor.
-        
-        console.log("Dados prontos para envio:", resultadoContagem);
+    // 1. ESCONDE o título principal (conforme o pedido anterior)
+    if (tituloPrincipal) {
+        tituloPrincipal.style.display = 'none';
     }
+    
+    // 2. ESCONDE o container de contagem (para limpar a tela)
+    document.getElementById('contagem-container').style.display = 'none'; 
+
+    // 3. Executa o Resumo Final (onde o botão é reconfigurado e o total aparece)
+    exibirResultadoFinal(); 
+} 
+    }
+    // 4. Função para Exibir o Resumo Final (Próximo Passo Lógico)
+function exibirResultadoFinal() {
+    // REMOVEMOS O ALERT! A função agora gerencia a exibição na tela.
+    
+    // 1. Torna visível o NOVO DIV de resumo (#resumo-final)
+    // OBS: Você deve ter o #resumo-final no seu HTML, e ele deve estar com display: none no CSS.
+    if (resumoFinalDiv) {
+        resumoFinalDiv.style.display = 'block'; 
+    }
+        
+    // 3. Atualiza o texto do SPAN com o valor calculado
+    if (saldoTotalSpan) {
+        saldoTotalSpan.textContent = formatarMoeda(resultadoContagem.totalDinheiro);
+    }
+    
+    // 4. Reconfigura o botão final (para o próximo passo lógico: Envio)
+    btnProximo.disabled = false;
+    btnProximo.textContent = 'ENVIAR FECHAMENTO AO SERVIDOR';
+    
+    // 5. Inicia os Confetes (se você adicionou o script no HTML)
+    if (typeof iniciarConfetes === 'function') {
+        iniciarConfetes();
+    }
+}
 
     // 5. Listener do Botão
     btnProximo.addEventListener('click', avancarEtapa);
