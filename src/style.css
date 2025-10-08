@@ -1,0 +1,141 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #fffafc;
+}
+
+#logo {
+    max-width: 400px;
+    margin-bottom: 2rem;
+}
+
+#nota_cem {
+   max-width: 52%;
+   margin-bottom: 2rem; 
+}
+
+#nota_cinquenta {
+   max-width: 52%;
+   margin-bottom: 2rem; 
+}
+
+#nota_vinte {
+   max-width: 52%;
+   margin-bottom: 2rem; 
+}
+
+#nota_dez {
+   max-width: 52%;
+   margin-bottom: 2rem; 
+}
+
+#nota_cinco {
+   max-width: 52%;
+   margin-bottom: 2rem; 
+}
+
+#nota_dois {
+   max-width: 52%;
+   margin-bottom: 2rem; 
+}
+
+#moeda_hum {
+   max-width: 37%;
+   margin-bottom: 1rem; 
+}
+
+#moeda_cinquenta {
+   max-width: 37%;
+   margin-bottom: 1rem; 
+}
+
+#moeda_vinte_e_cinco {
+   max-width: 37%;
+   margin-bottom: 1rem; 
+}
+
+#moeda_dez {
+   max-width: 37%;
+   margin-bottom: 1rem; 
+}
+
+#moeda_cinco {
+   max-width: 37%;
+   margin-bottom: 1rem;
+}
+
+#qtd {
+    display: inline-flex;
+}
+
+header {
+    margin-bottom: 0px; 
+    padding-bottom: 0px;
+}
+
+header h1 {
+    margin-top: 0px; 
+    margin-bottom: 0px; 
+    font-size: 1.5em; 
+}
+
+#contagem-container {
+    margin: 20px auto;
+    padding: 15px;
+    width: 80%;
+    max-width: 500px;
+    border: 2px solid #f5b6d2; 
+    border-radius: 10px;
+    background-color: #fff;
+    margin-top: 2rem;
+}
+
+#mensagem-erro {
+    color: red;
+    display: none; 
+    margin-top: 10px;
+}
+
+#qtd {
+    display: inline-flex;
+}
+
+.step {
+    display: none; 
+    margin-bottom: 30px;
+    padding: 15px;
+}
+
+.step.active {
+    display: block; 
+}
+
+.step label {
+    display: block;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.quantidade {
+    padding: 10px;
+    font-size: 1.5em;
+    width: 200px;
+    text-align: center;
+}
+
+#confirmar-proximo {
+    padding: 15px 30px;
+    font-size: 1.1em;
+    background-color: #28a745; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#resumo-final {
+    display: none; 
+    margin-top: 20px;
+    padding-top: 10px;
+}
