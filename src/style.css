@@ -35,33 +35,33 @@ body {
 }
 
 #nota_dois {
-   max-width: 52%;
+   max-width: 50%;
    margin-bottom: 2rem; 
 }
 
 #moeda_hum {
-   max-width: 37%;
-   margin-bottom: 1rem; 
+   max-width: 31%;
+   margin-bottom: 0rem; 
 }
 
 #moeda_cinquenta {
-   max-width: 37%;
-   margin-bottom: 1rem; 
+   max-width: 31%;
+   margin-bottom: 0rem; 
 }
 
 #moeda_vinte_e_cinco {
-   max-width: 37%;
-   margin-bottom: 1rem; 
+   max-width: 31%;
+   margin-bottom: 0rem; 
 }
 
 #moeda_dez {
-   max-width: 37%;
-   margin-bottom: 1rem; 
+   max-width: 31%;
+   margin-bottom: 0rem; 
 }
 
 #moeda_cinco {
-   max-width: 37%;
-   margin-bottom: 1rem;
+   max-width: 31%;
+   margin-bottom: 0rem;
 }
 
 #qtd {
@@ -132,6 +132,8 @@ header h1 {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    display: block;
+    margin: 20px auto;
 }
 
 #resumo-final {
