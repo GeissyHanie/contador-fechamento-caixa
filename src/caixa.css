@@ -144,10 +144,11 @@ object-fit: contain;}
 }
 
 .money-photo img {
-    width: 200px;
-    height: auto;
-    border-radius: 8px;
-    margin-bottom: 10px;
+    max-width: 100%;
+    max-height: 180px; /* Limita a altura para não empurrar o card */
+    object-fit: contain; /* Não deixa a imagem esticar */
+    margin: 0 auto;
+    display: block;
 }
 
 .money-value { font-size: 24px; font-weight: 700; color: #444; }

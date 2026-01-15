@@ -1,0 +1,90 @@
+/* Container Geral do Painel */
+.revisao-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 20px;
+}
+
+/* Grid de Notas (3 colunas) */
+.grid-notas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+/* Grid de Moedas (5 colunas) */
+.grid-moedas {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+    justify-items: center;
+}
+
+/* Card de Notas */
+.card-nota-resumo {
+    background: white;
+    border-radius: 15px;
+    padding: 15px;
+    border: 1px solid #fce4ec;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+.card-nota-resumo img {
+    width: 100%;
+    height: 80px;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+/* Card de Moedas (Redondo) */
+.card-moeda-resumo {
+    width: 120px;
+    text-align: center;
+}
+
+.moeda-circulo {
+    width: 80px;
+    height: 80px;
+    background: white;
+    border: 3px solid #fbc531; /* Cor amarela da moeda de 1 real */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.moeda-circulo img {
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+}
+
+/* Badge de Quantidade */
+.qtd-badge {
+    background: #fdf2f7;
+    color: #e91e63;
+    border: 1px solid #f45095;
+    border-radius: 10px;
+    padding: 5px 15px;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 10px;
+    min-width: 60px;
+}
+
+/* Rodapé de Total */
+.total-footer {
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    border: 2px solid #f45095;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+}

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumo da Contagem | Mundo Doce</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="caixa.css">
+    <style>
+        /* Garante que a página role e não corte o conteúdo */
+        body.caixa-body {
+            height: auto;
+            min-height: 100vh;
+            overflow-y: auto;
+            padding-bottom: 50px;
+        }
+
+        .stepper-card.wide {
+            max-width: 950px;
+            width: 95%;
+            margin: 0 auto 30px auto;
+        }
+
+        /* Layout dos Grids */
+        .grid-revisao {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .card-revisao {
+            background: #fff;
+            border: 1px solid #fce4ec;
+            border-radius: 20px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .card-revisao img {
+            width: 100%;
+            height: 75px;
+            object-fit: contain;
+        }
+
+        /* Moedas redondas como na referência */
+        .moeda-layout {
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        }
+
+        .card-revisao.moeda {
+            border-radius: 30px;
+            border-bottom: 4px solid #fbc531;
+        }
+
+        .qtd-final {
+            display: block;
+            background: #fdf2f7;
+            color: #e91e63;
+            font-weight: 700;
+            border-radius: 10px;
+            padding: 5px;
+            margin-top: 10px;
+        }
+
+        .footer-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .btn-sangria {
+            background-color: #ff9800 !important;
+            box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3) !important;
+        }
+    </style>
+</head>
+<body class="caixa-body">
+
+    <main class="content-wrapper">
+        <div class="page-header">
+            <div class="logo-fixed-box">
+                <img src="../assets/Doces e Mimos.png" alt="Logo Mundo Doce">
+            </div>
+            <h1 class="main-title">Painel Geral de Contagem</h1>
+        </div>
+
+        <div class="stepper-card wide">
+            <h3 style="text-align: left; color: #444; margin-bottom: 20px;">💵 Conferência de Notas</h3>
+            <div id="grid-notas" class="grid-revisao"></div>
+
+            <h3 style="text-align: left; color: #444; margin-bottom: 20px;">💰 Conferência de Moedas</h3>
+            <div id="grid-moedas" class="grid-revisao moeda-layout"></div>
+
+            <div class="total-footer" style="border: 2px solid #f45095; padding: 25px; border-radius: 25px; background: #fff; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+                <div style="text-align: left;">
+                    <label style="font-size: 12px; color: #999; font-weight: 700;">TOTAL EM CAIXA</label>
+                    <h2 id="total-final" style="color: #e91e63; font-size: 32px; margin: 0;">R$ 0,00</h2>
+                </div>
+                
+                <div class="footer-actions">
+                    <button class="btn-link-back" onclick="window.location.href='caixa.html'">← Voltar</button>
+                    <button class="primary-action-btn btn-sangria" style="width: auto;" onclick="realizarSangria()">💸 Sangria</button>
+                    <button class="primary-action-btn" style="width: auto;" onclick="confirmarContagem()">Confirmar Contagem ✓</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const itens = [
+            { valor: "200,00", texto: "R$ 200", img: "../assets/nota200.jpg", tipo: "nota" },
+            { valor: "100,00", texto: "R$ 100", img: "../assets/nota100.jpeg", tipo: "nota" },
+            { valor: "50,00",  texto: "R$ 50",  img: "../assets/nota50.jpeg",  tipo: "nota" },
+            { valor: "20,00",  texto: "R$ 20",  img: "../assets/nota20.jpeg",  tipo: "nota" },
+            { valor: "10,00",  texto: "R$ 10",  img: "../assets/nota10.jpeg",  tipo: "nota" },
+            { valor: "5,00",   texto: "R$ 5",   img: "../assets/nota5.jpeg",   tipo: "nota" },
+            { valor: "2,00",   texto: "R$ 2",   img: "../assets/nota2.jpeg",   tipo: "nota" },
+            { valor: "1,00",   texto: "R$ 1",   img: "../assets/moeda1.png",   tipo: "moeda" },
+            { valor: "0,50",   texto: "R$ 0,50", img: "../assets/moeda50.png", tipo: "moeda" },
+            { valor: "0,25",   texto: "R$ 0,25", img: "../assets/moeda25.png", tipo: "moeda" },
+            { valor: "0,10",   texto: "R$ 0,10", img: "../assets/moeda10.png", tipo: "moeda" },
+            { valor: "0,05",   texto: "R$ 0,05", img: "../assets/moeda5.png",  tipo: "moeda" }
+        ];
+
+        function carregarResumo() {
+            const dados = JSON.parse(localStorage.getItem('dadosContagem')) || {};
+            const gridNotas = document.getElementById('grid-notas');
+            const gridMoedas = document.getElementById('grid-moedas');
+            let total = 0;
+
+            itens.forEach(item => {
+                const qtd = parseInt(dados[item.valor]) || 0;
+                const valorNum = parseFloat(item.valor.replace(',', '.'));
+                total += (valorNum * qtd);
+
+                const card = `
+                    <div class="card-revisao ${item.tipo}">
+                        <img src="${item.img}">
+                        <p style="font-size: 13px; margin: 5px 0;">${item.texto}</p>
+                        <span class="qtd-final">${qtd} un</span>
+                    </div>
+                `;
+
+                if (item.tipo === 'nota') gridNotas.innerHTML += card;
+                else gridMoedas.innerHTML += card;
+            });
+
+            document.getElementById('total-final').innerText = `R$ ${total.toLocaleString('pt-BR', {minimumFractionDigits: 2})}`;
+        }
+
+        function realizarSangria() {
+        // Esse comando força o navegador a abrir a nova tela que você criou
+            window.location.href = 'sangria.html';
+        }
+
+        function confirmarContagem() {
+            alert("Contagem finalizada!");
+            localStorage.clear();
+            window.location.href = 'caixa.html';
+        }
+
+        window.onload = carregarResumo;
+    </script>
+</body>
+</html>

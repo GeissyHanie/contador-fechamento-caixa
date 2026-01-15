@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Sangria por Notas | Doces e Mimos</title>
+    <link rel="stylesheet" href="sangria.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="sangria-body">
+
+    <header class="header-center">
+        <img src="../assets/Doces e Mimos.png" class="logo-solo" alt="Logo">
+        <h1 class="titulo-sangria">Sangria por Notas</h1>
+        <div class="instrucao-pill">
+            <span class="icon-cash">💵</span> Conte as notas para retirar
+        </div>
+    </header>
+
+    <main class="main-layout">
+        <section class="card-white-container">
+            <div class="top-gradient-bar"></div>
+            <div class="grid-content">
+                <div class="column-items">
+                    <h3 class="column-title"><span class="icon-purple">💵</span> Cédulas</h3>
+                    <div id="lista-cedulas"></div>
+                </div>
+                <div class="column-items">
+                    <h3 class="column-title"><span class="icon-purple">🪙</span> Moedas</h3>
+                    <div id="lista-moedas"></div>
+                </div>
+            </div>
+        </section>
+
+       <aside class="resumo-sidebar">
+            <div class="resumo-wrapper">
+                <h3 class="resumo-title">Resumo Final</h3>
+
+            <div class="box-info dashed-box">
+                <label>SALDO ANTERIOR</label>
+                <div class="valor-foco" id="saldo-anterior-txt">R$ 0,00</div>
+            </div>
+
+            <div class="box-info pink-box">
+                <span class="tag-saida">SAÍDA</span>
+                <label>TOTAL DA SANGRIA</label>
+                <div class="valor-foco pink-text" id="total-sangria-txt">R$ 0,00</div>
+            </div>
+
+            <div class="box-info green-box">
+                <label>SALDO ATUAL</label>
+                <div class="valor-foco green-text" id="saldo-atual-txt">R$ 0,00</div>
+            </div>
+
+            <div class="bunny-wrapper">
+                <img src="../assets/LILI_PNG2.png" alt="Bunny" class="bunny-img">
+            </div>
+
+            <button class="btn-confirmar-sangria" onclick="finalizarSangria()">
+                <span class="icon-check">✔</span> Confirmar
+            </button>
+
+            <div class="footer-actions-row">
+                <button class="btn-voltar-sangria" onclick="window.history.back()">← Voltar</button>
+                <button class="btn-sair-sangria" onclick="window.location.href='caixa.html'">Sair <span class="icon-exit">➔</span></button>
+            </div>
+        </aside>
+    </main>
+
+    <script>
+        const itensConfig = [
+            { v: 100, t: "R$ 100,00", img: "../assets/nota100.jpeg", tipo: "nota" },
+            { v: 50,  t: "R$ 50,00",  img: "../assets/nota50.jpeg",  tipo: "nota" },
+            { v: 20,  t: "R$ 20,00",  img: "../assets/nota20.jpeg",  tipo: "nota" },
+            { v: 10,  t: "R$ 10,00",  img: "../assets/nota10.jpeg",  tipo: "nota" },
+            { v: 5,   t: "R$ 5,00",   img: "../assets/nota5.jpeg",   tipo: "nota" },
+            { v: 2,   t: "R$ 2,00",   img: "../assets/nota2.jpeg",   tipo: "nota" },
+            { v: 1,   t: "R$ 1,00",   img: "../assets/moeda1.png",   tipo: "moeda" },
+            { v: 0.5, t: "R$ 0,50",   img: "../assets/moeda50.png", tipo: "moeda" },
+            { v: 0.25,t: "R$ 0,25",   img: "../assets/moeda25.png", tipo: "moeda" },
+            { v: 0.1, t: "R$ 0,10",   img: "../assets/moeda10.png", tipo: "moeda" },
+            { v: 0.05,t: "R$ 0,05",   img: "../assets/moeda5.png",  tipo: "moeda" }
+        ];
+
+        let saldoBase = 0;
+
+        function init() {
+            // Tenta recuperar o saldo contado na tela anterior
+            const saldoSalvo = localStorage.getItem('saldoPreSangria') || "R$ 0,00";
+            saldoBase = parseFloat(saldoSalvo.replace(/[R$\s.]/g, '').replace(',', '.')) || 0;
+            document.getElementById('saldo-anterior-txt').innerText = formatarMoeda(saldoBase);
+            document.getElementById('saldo-atual-txt').innerText = formatarMoeda(saldoBase);
+
+            const containerNotas = document.getElementById('lista-cedulas');
+            const containerMoedas = document.getElementById('lista-moedas');
+
+            itensConfig.forEach((item, index) => {
+                const itemHTML = `
+                    <div class="row-item-sangria">
+                        <div class="item-visual-info">
+                            <img src="${item.img}" class="img-thumb ${item.tipo === 'nota' ? 'nota-img' : 'moeda-img'}">
+
+                            <span class="label-item">${item.t}</span>
+                        </div>
+                        <input type="number" class="input-count" value="0" min="0" oninput="calcularTudo()" id="input-${index}">
+                    </div>
+                `;
+                if(item.tipo === 'nota') containerNotas.innerHTML += itemHTML;
+                else containerMoedas.innerHTML += itemHTML;
+            });
+        }
+
+        function calcularTudo() {
+            let totalRetirado = 0;
+            itensConfig.forEach((item, index) => {
+                const qtd = parseInt(document.getElementById(`input-${index}`).value) || 0;
+                totalRetirado += (item.v * qtd);
+            });
+
+            document.getElementById('total-sangria-txt').innerText = formatarMoeda(totalRetirado);
+            document.getElementById('saldo-atual-txt').innerText = formatarMoeda(saldoBase - totalRetirado);
+        }
+
+        function formatarMoeda(v) {
+            return `R$ ${v.toLocaleString('pt-BR', {minimumFractionDigits: 2})}`;
+        }
+
+        function finalizarSangria() {
+            alert("Sangria confirmada com sucesso!");
+            window.location.href = 'caixa.html';
+        }
+
+        window.onload = init;
+    </script>
+</body>
+</html>
