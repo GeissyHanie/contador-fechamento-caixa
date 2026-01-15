@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Caixa | Mundo Doce</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="caixa.css">
+</head>
+<body class="caixa-body">
+
+    <header class="top-nav">
+        <div class="store-info">
+            <span class="store-icon">🏪</span>
+            <span>Bomboniere Doces e Mimos</span>
+        </div>
+        <button class="btn-exit">Sair ➔</button>
+    </header>
+
+    <main class="content-wrapper">
+        <div class="page-header">
+            <div class="logo-fixed-box">
+                <img src="../assets/Doces e Mimos.png" alt="Logo Mundo Doce">
+            </div>
+            <h1 class="main-title">Controle de Caixa</h1>
+            <p class="main-subtitle">Contagem de Cédulas e Moedas</p>
+        </div>
+
+        <div class="stepper-card">
+            <div class="card-header-row">
+                <span class="step-indicator">📋 Etapa 1 de 12</span>
+                <span class="status-badge">🎉 Falta pouco!</span>
+            </div>
+
+            <div class="floating-summary">
+            </div>
+
+            <div class="progress-container">
+                <div class="progress-bar" style="width: 15%;"></div>
+                <div class="progress-knob" style="left: 15%;"></div>
+            </div>
+            <p class="progress-hint">Ao terminar, ganharemos um docinho virtual! 🍭</p>
+
+            <div class="money-focus-area">
+                <div class="money-photo">
+                    <img src="../assets/nota100.jpeg" alt="Nota R$ 100">
+                </div>
+                <h2 class="money-value">R$ 100,00</h2>
+            </div>
+
+            <p class="instruction">Quantas notas de <strong>R$ 100</strong> você tem?</p>
+
+            <div class="counter-control">
+                <button class="count-btn" onclick="alterarValor(-1)">−</button>
+                <input type="text" id="contador" value="0" readonly class="count-display">
+                <button class="count-btn" onclick="alterarValor(1)">+</button>
+            </div>
+
+            <button class="primary-action-btn">Confirmar e Próximo ➔</button>
+            
+            <div class="secondary-actions">
+                <button class="btn-link-back">
+                    <span class="seta-voltar">←</span> Voltar
+            </button>
+            <button class="btn-link-skip">PULAR ESTA NOTA</button>
+            </div>
+        </div>
+
+        <div class="floating-summary">
+            <div class="sum-item">
+                <div class="sum-icon yellow">💳</div>
+                <div class="sum-details">
+                    <label>TOTAL PARCIAL</label>
+                    <strong>R$ 1.250,00</strong>
+                </div>
+            </div>
+            <div class="sum-item">
+                <div class="sum-icon pink">📋</div>
+                <div class="sum-details">
+                    <label>SALDO ESPERADO</label>
+                    <strong>R$ 1.248,50</strong>
+                </div>
+            </div>
+            <div class="sum-item">
+                <div class="sum-icon green">⚖️</div>
+                <div class="sum-details">
+                    <label>DIFERENÇA</label>
+                    <strong class="diff-positive">+ R$ 1,50</strong>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function alterarValor(delta) {
+            const input = document.getElementById('contador');
+            let valor = parseInt(input.value);
+            valor = Math.max(0, valor + delta);
+            input.value = valor;
+        }
+    </script>
+
+</body>
+</html>

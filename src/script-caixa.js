@@ -1,4 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
+    if (sessionStorage.getItem("logado") !== "true") {
+        window.location.href = "login.html";
+    }
+
     // 1. Definições de Elementos e Variáveis de Estado - GERAIS
     const steps = document.querySelectorAll('.step');
     const btnProximo = document.getElementById('confirmar-proximo');

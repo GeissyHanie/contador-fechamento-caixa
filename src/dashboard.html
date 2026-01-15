@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Mundo Doce</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="header-left">
+            <img src="../assets/logo_bomboniere.png" alt="Logo" class="mini-logo">
+            <span class="brand-name">Doces e Mimos</span>
+        </div>
+        <div class="header-right">
+            <span class="notif-bell">🔔</span>
+            <div class="user-pill">
+                <span class="avatar-circle">A</span>
+                <span class="user-text">Admin</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-container">
+        
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1>Bem-vindo ao <span>Mundo Doce!</span></h1>
+                <p>Gerencie sua loja com carinho e praticidade. Selecione uma das opções abaixo para começar.</p>
+            </div>
+            <div class="bunny-container">
+                <img src="..\assets\LILI_PNG.png" alt="Bunny" class="hero-bunny">
+            </div>
+        </section>
+
+        <div class="dashboard-grid">
+            
+            <a href="caixa.html" class="dash-card">
+                <div class="icon-wrap pink-bg"><img src="..\assets\controle de caixa.png" alt="Controle de Caixa"></div>
+                <h3>Controle de Caixa</h3>
+                <p>Abertura, fechamento e conferência de valores diários.</p>
+            </a>
+
+            <div class="dash-card">
+                <div class="icon-wrap blue-bg"><img src="..\assets\relogio.png" alt="Registro de Ponto"></div>
+                <h3>Registro de Ponto</h3>
+                <p>Controle de entrada, saída e pausas dos colaboradores.</p>
+            </div>
+
+            <div class="dash-card">
+                <div class="icon-wrap yellow-bg"><img src="..\assets\manual.png" alt="Manuais"></div>
+                <h3>Manuais</h3>
+                <p>Procedimentos operacionais, receitas e guias da loja.</p>
+            </div>
+
+            <div class="dash-card wide-card">
+                <div class="icon-wrap green-bg"><img src="..\assets\carrinho.png" alt="Simular Compra"></div>
+                <div class="wide-info">
+                    <h3>Simular Compra</h3>
+                    <p>Treinamento para novos funcionários. Pratique o registro de itens, aplicação de descontos e formas de pagamento sem afetar o caixa real.</p>
+                    <button class="btn-simular">Iniciar Simulação</button>
+                </div>
+            </div>
+
+        </div>
+
+        <section class="summary-container">
+    <h3 class="summary-title">
+        <span class="icon-title">📊</span> Resumo do Dia
+    </h3>
+    <div class="summary-row">
+        <div class="sum-box pink-sum">
+            <span class="label">VENDAS HOJE</span>
+            <span class="value">R$ 1.240,50</span>
+            <span class="trend positive">📈 +12% vs ontem</span>
+        </div>
+
+        <div class="sum-box purple-sum">
+            <span class="label">TICKETS</span>
+            <span class="value">45</span>
+            <span class="trend neutral">🕒 Último há 5min</span>
+        </div>
+
+        <div class="sum-box yellow-sum">
+            <span class="label">CAIXA ATUAL</span>
+            <span class="value">R$ 350,00</span>
+            <span class="trend alert">🔒 Fechamento pendente</span>
+        </div>
+    </div>
+</section>
+
+    </main>
+
+    <footer class="main-footer">
+        <p>© 2026 Doces e Mimos Sistema</p>
+        <div class="footer-links">
+            <a href="#">Suporte</a>
+            <a href="#">Configurações</a>
+            <span class="theme-toggle">🌙</span>
+        </div>
+    </footer>
+
+</body>
+</html>

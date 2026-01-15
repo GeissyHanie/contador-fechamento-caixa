@@ -1,0 +1,294 @@
+:root {
+    --pink-brand: #e91e63;
+    --pink-light: #fce4ec;
+    --bg-dots: #f8bbd0;
+    --white: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body.caixa-body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza horizontalmente */
+    background-color: #fdf2f7;
+    background-image: radial-gradient(#f8bbd0 1px, transparent 1px);
+    background-size: 24px 24px;
+}
+
+/* Header */
+.top-nav {
+    width: 100%;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-exit {
+    background: white;
+    border: 1px solid var(--pink-light);
+    color: var(--pink-brand);
+    padding: 8px 24px;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* Logo e Títulos - CORREÇÃO DA SOBREPOSIÇÃO */
+.page-header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.logo-fixed-box img {
+    width: 116%;
+    height: auto;
+object-fit: contain;}
+
+.logo-fixed-box {
+   background: none !important;
+    width: 180px;
+    margin: 0 auto 20px auto;
+    display: flex;
+    justify-content: center;
+}
+
+.main-title {
+    color: #e91e63;         /* Rosa idêntico à referência */
+    font-size: 32px;
+    font-weight: 700;
+    margin: -30px auto 5px auto;
+}
+
+.main-subtitle {
+    color: #636e72;         /* Cinza escuro para a contagem de cédulas */
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* Card Principal */
+.stepper-card {
+    background: #ffffff;
+    width: 100%;
+    max-width: 450px;       /* Largura exata do card conforme referência */
+    margin: 30px auto;      /* Centraliza o container em si */
+    border-radius: 45px;
+    padding: 40px;
+    box-shadow: 0 30px 60px rgba(233, 30, 99, 0.08);
+    text-align: center;     /* Centraliza textos e botões internos */
+}
+
+.card-header-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.step-indicator { color: var(--pink-brand); font-weight: 600; font-size: 13px; }
+
+.status-badge {
+    background: #fff9c4;
+    color: #a18800;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+/* Barra de Progresso */
+.progress-container {
+    background: #fdf2f7;
+    height: 6px;
+    border-radius: 10px;
+    position: relative;
+    margin-bottom: 8px;
+}
+
+.progress-bar {
+    background: var(--pink-brand);
+    height: 100%;
+    border-radius: 10px;
+}
+
+.progress-knob {
+    width: 14px;
+    height: 14px;
+    background: var(--pink-brand);
+    border: 3px solid white;
+    border-radius: 50%;
+    position: absolute;
+    top: -4px;
+}
+
+.progress-hint { font-size: 11px; color: #bbb; margin-bottom: 25px; }
+
+/* Área da Nota */
+.money-focus-area {
+    border: 2px dashed #fce4ec;
+    border-radius: 35px;
+    padding: 25px;
+    margin-bottom: 20px;
+}
+
+.money-photo img {
+    width: 200px;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.money-value { font-size: 24px; font-weight: 700; color: #444; }
+
+.instruction { font-size: 15px; color: #555; margin-bottom: 25px; }
+.instruction strong { color: var(--pink-brand); }
+
+/* Contador */
+.counter-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.count-btn {
+    width: 45px;
+    height: 45px;
+    border: none;
+    background: #fdf2f7;
+    color: var(--pink-brand);
+    font-size: 22px;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.count-display {
+    width: 80px;
+    text-align: center;
+    font-size: 40px;
+    font-weight: 700;
+    border: none;
+    outline: none;
+    background: transparent;
+}
+
+/* Botão Confirmar */
+.primary-action-btn {
+    width: 100%;
+    background-color: #f45095 !important; /* Rosa Chiclete vibrante */
+    color: white !important;
+    border: none;
+    padding: 20px;
+    border-radius: 25px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    /* Sombra suave para o efeito 'glow' da imagem */
+    box-shadow: 0 10px 25px rgba(244, 80, 149, 0.4) !important; 
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.primary-action-btn:hover {
+    background-color: #e91e63 !important;
+    transform: translateY(-2px);
+}
+
+.secondary-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+.btn-link-back {
+    background-color: white !important;
+    border: 2px solid #fce4ec !important; /* Borda rosa clarinha */
+    color: #f45095 !important;            /* Texto rosa chiclete */
+    padding: 10px 25px;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+}
+
+.btn-link-back:hover {
+    background-color: #fdf2f7 !important;
+    border-color: #f45095 !important;
+}
+
+.btn-link-skip {
+    background: none;
+    border: none;
+    color: #ccc;
+    font-weight: 600;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+/* Resumo Flutuante na Base */
+.floating-summary {
+    display: flex;
+    gap: 15px;
+    margin-top: 40px;
+    padding-bottom: 40px;
+}
+
+.sum-item {
+    background: white;
+    padding: 15px 20px;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 200px;
+}
+
+.sum-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-size: 20px;
+}
+
+.sum-icon.yellow { background: #fffde7; }
+.sum-icon.pink { background: #fdf2f7; }
+.sum-icon.green { background: #e8f5e9; }
+
+.sum-details label { font-size: 9px; color: #999; display: block; font-weight: 700; }
+.sum-details strong { font-size: 16px; }
+.diff-positive { color: #2ecc71; }
+
+.store-info span {
+    color: #2d3436 !important; /* Cinza grafite muito escuro */
+    font-weight: 700;           /* Deixa a fonte bem grossa */
+    font-size: 14px;
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;    /* Centraliza os filhos (header e card) */
+    justify-content: flex-start;
+    width: 100%;
+    max-width: 1200px;      /* Limita a largura máxima para telas grandes */
+    margin: 0 auto;         /* Margem automática nas laterais */
+    padding: 40px 20px;
+}

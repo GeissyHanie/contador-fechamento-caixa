@@ -1,0 +1,394 @@
+/* Reset de Estilos para garantir consistência em todos os navegadores */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --rosa-principal: #e91e63;
+    --rosa-fundo: #fff8f9;
+    --branco: #ffffff;
+    --cinza-texto: #4a4a4a;
+    --cinza-claro: #888888;
+    --sombra-suave: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+body {
+    background-color: var(--rosa-fundo);
+    font-family: 'Poppins', sans-serif;
+    color: var(--cinza-texto);
+    line-height: 1.6;
+}
+
+/* --- NAVBAR --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    background: var(--branco);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Controle rigoroso da logo para não quebrar o layout */
+.mini-logo {
+    width: 70px !important;
+    height: 45px !important;
+    object-fit: contain;
+}
+
+/* Seletor específico para o nome da marca nas telas */
+.brand-name {
+    font-family: 'Pacifico', cursive !important;
+    font-weight: 400;
+    color: #e91e63 !important; /* Rosa idêntico ao da imagem */
+    font-size: 22px;
+    letter-spacing: 0.5px;
+    text-transform: none; /* Garante que não fique em maiúsculo */
+}
+
+/* Título de Login na tela de entrada */
+h2.font-destaque {
+    font-family: 'Pacifico', cursive !important;
+    font-size: 32px;
+    color: #2d3436; /* Cor escura conforme a imagem de login */
+    margin-bottom: 10px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.user-pill {
+    background: #fdf2f7;
+    padding: 6px 15px 6px 6px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.avatar-circle {
+    background: var(--rosa-principal);
+    color: white;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+
+/* --- HERO SECTION (Boas-vindas) --- */
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 5%;
+}
+
+.hero-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 0;
+    gap: 40px;
+}
+
+.hero-content h1 {
+    font-size: 42px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.hero-content h1 span {
+    color: var(--rosa-principal);
+}
+
+.hero-content p {
+    font-size: 18px;
+    color: var(--cinza-claro);
+    max-width: 550px;
+}
+
+/* Controle da imagem do Coelho */
+.bunny-container {
+    flex-shrink: 0; /* Impede que o container diminua */
+}
+
+.hero-bunny {
+    width: 320px;
+    height: 136px;
+    object-fit: cover;
+    border-radius: 30px;
+    box-shadow: 20px 20px 60px rgba(233, 30, 99, 0.1);
+}
+
+/* --- GRID DE CARDS --- */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 colunas iguais */
+    gap: 25px;
+    margin-bottom: 50px;
+}
+
+.dash-card {
+    background: var(--branco);
+    padding: 35px 25px;
+    border-radius: 25px;
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: var(--sombra-suave);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0,0,0,0.02);
+}
+
+.dash-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(233, 30, 99, 0.08);
+}
+
+/* Card Simular Compra (Largo) */
+.wide-card {
+    grid-column: span 2; /* Ocupa duas colunas */
+    display: flex;
+    text-align: left;
+    align-items: center;
+    gap: 30px;
+}
+
+.icon-wrap {
+    width: 45px !important;
+    height: 45px !important;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px !important;
+    margin: 0 auto 10px !important;
+}
+
+.wide-card .icon-wrap {
+    margin-bottom: 0;
+    min-width: 90px;
+    height: 90px;
+    font-size: 40px;
+}
+
+/* Cores de Fundo dos Ícones */
+.pink-bg { background: #fff0f5; }
+.orange-bg { background: #fff4f0; }
+
+.btn-simular {
+    background: #2ecc71;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 140px;
+    font-weight: 600;
+    margin-top: 15px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-simular:hover { background: #27ae60; }
+
+/* --- RESUMO DO DIA --- */
+.summary-container {
+    margin-top: 40px;
+}
+
+.summary-title {
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.summary-row {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.sum-box {
+    flex: 1;
+    min-width: 200px;
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sum-box .label { font-size: 12px; font-weight: 600; color: var(--cinza-claro); }
+.sum-box .value { font-size: 22px; font-weight: 600; margin: 5px 0; }
+.sum-box .trend { font-size: 11px; font-weight: 500; }
+
+.pink-sum { background: #fdf2f7; }
+.purple-sum { background: #f5f2fd; }
+.yellow-sum { background: #fdfcf2; }
+.blue-sum { background: #f2f8fd; }
+
+/* --- FOOTER --- */
+.main-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 5%;
+    border-top: 1px solid #eee;
+    margin-top: 50px;
+    font-size: 13px;
+    color: var(--cinza-claro);
+}
+
+.footer-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.footer-links a { text-decoration: none; color: inherit; }
+.theme-toggle { cursor: pointer; font-size: 18px; }
+
+/* --- RESPONSIVIDADE --- */
+@media (max-width: 900px) {
+    .dashboard-grid { grid-template-columns: 1fr 1fr; }
+    .wide-card { grid-column: span 2; }
+    .hero-section { flex-direction: column; text-align: center; }
+    .hero-content p { margin: 0 auto; }
+}
+
+@media (max-width: 600px) {
+    .dashboard-grid { grid-template-columns: 1fr; }
+    .wide-card { grid-column: span 1; flex-direction: column; text-align: center; }
+}
+
+.hero-content h1, .dash-card h3 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700; /* Peso forte para impacto */
+    color: #2d3436; /* Cinza escuro quase preto */
+    letter-spacing: -1px; /* Letras mais próximas como no design */
+    line-height: 1.2;
+}
+
+.hero-content h1 span {
+    color: #e91e63; /* "Mundo Doce" em rosa */
+}
+
+/* Estilo para a descrição pequena dentro dos cards do dashboard */
+.dash-card p {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    color: #636e72;
+    font-size: 14px;
+    line-height: 1.4; /* Melhora a leitura do texto pequeno */
+}
+
+/* Reduz o tamanho da imagem da caixa registradora */
+.icon-wrap img {
+    width: 54px !important; /* Ajuste este valor para o tamanho que desejar */
+    height: auto !important;
+    object-fit: contain;
+}
+
+/* Remove o círculo rosa e mantém apenas a imagem */
+.dash-card .icon-wrap.pink-bg {
+    background: none !important;      /* Remove a cor rosa de fundo */
+    background-color: transparent !important; /* Garante que fique transparente */
+    box-shadow: none !important;      /* Remove qualquer sombra do círculo */
+    width: auto !important;           /* Deixa a largura livre para a imagem */
+    height: auto !important;          /* Deixa a altura livre para a imagem */
+    margin: 0 auto 15px !important;   /* Ajusta o espaço entre a imagem e o texto */
+}
+
+/* Ajusta o tamanho da imagem da caixa registradora agora sem o círculo */
+.dash-card .icon-wrap.pink-bg img {
+    width: 69px !important;           /* Ajuste esse valor para o tamanho que desejar */
+    height: auto !important;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Container de Resumo */
+.summary-container {
+    margin-top: 50px;
+    padding: 0 5%;
+}
+
+.summary-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: #2d3436;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Linha de Cards */
+.summary-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* Estilo Individual do Card de Resumo */
+.sum-box {
+    flex: 1;
+    min-width: 250px;
+    padding: 30px;
+    border-radius: 40px; /* Bordas bem arredondadas como na imagem */
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border: none;
+}
+
+/* Labels e Valores */
+.sum-box .label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #888;
+    letter-spacing: 0.5px;
+}
+
+.sum-box .value {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.sum-box .trend {
+    font-size: 13px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Cores Específicas da Imagem */
+.pink-sum { 
+    background-color: #fff0f6; /* Fundo rosa claro */
+}
+.pink-sum .value { color: #e91e63; }
+.pink-sum .trend { color: #2ecc71; } /* Verde para tendência positiva */
+
+.purple-sum { 
+    background-color: #f8f0ff; /* Fundo roxo claro */
+}
+.purple-sum .value { color: #9c27b0; }
+.purple-sum .trend { color: #b2bec3; }
+
+.yellow-sum { 
+    background-color: #fffdf0; /* Fundo amarelo claro */
+}
+.yellow-sum .value { color: #b08900; }
+.yellow-sum .trend { color: #b2bec3; }
