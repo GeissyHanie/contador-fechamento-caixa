@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado Final | Doces e Mimos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="sucesso_sangria.css">
+</head>
+<body class="fechamento-body">
+
+    <nav class="navbar-topo">
+        <div class="navbar-left">
+            <span class="brand-name">🏩 Doces e Mimos</span>
+        </div>
+        <div class="navbar-right">
+            <span class="icon-moon">🌙</span>
+            <span class="operator-name">Operador: Geissy</span>
+        </div>
+    </nav>
+    <div class="navbar-line"></div>
+
+    <div class="logo-container-final">
+        <img src="../assets/Doces e Mimos.png" class="logo-solo-final" alt="Logo">
+    </div>
+
+    <main class="card-resultado">
+        <header class="card-header-rosa">
+            <h2>Resultado Final do Fechamento</h2>
+            <p>Confira os valores antes de finalizar</p>
+        </header>
+
+        <div class="card-body-fechamento">
+            <div class="row-valores">
+                <div class="box-valor blue-theme">
+                    <div class="label-group">
+                        <span>SALDO ANTES DA SANGRIA</span>
+                        <span class="mini-icon">📋</span>
+                    </div>
+                    <strong id="saldo-antes">R$ 1.250,00</strong>
+                </div>
+
+                <div class="box-valor red-theme">
+                    <div class="label-group">
+                        <span>VALOR TOTAL DA SANGRIA</span>
+                        <span class="mini-icon">💸</span>
+                    </div>
+                    <strong id="valor-sangria">R$ 320,00</strong>
+                </div>
+            </div>
+
+            <div class="box-saldo-pos">
+                <span class="label-pos">SALDO PÓS SANGRIA</span>
+                <strong id="saldo-pos">R$ 930,00</strong>
+            </div>
+
+            <div class="footer-buttons">
+                <button class="btn-revisar" onclick="window.history.back()">
+                    <span>☰</span> Revisar Sangria
+                </button>
+                <button class="btn-finalizar" onclick="concluir()">
+                    <span>✓</span> FINALIZAR FECHAMENTO
+                </button>
+            </div>
+            
+        </div>
+    </main>
+
+    <footer class="bottom-icons">
+        🍦 🍰 🍪 ☕
+    </footer>
+
+   <script>
+    // 1. Puxa os valores salvos anteriormente para exibir nos boxes
+    const valorSangria = localStorage.getItem('totalUltimaSangria') || "R$ 0,00";
+    document.getElementById('valor-sangria').innerText = valorSangria;
+    
+    // Você pode definir um saldo fixo ou dinâmico aqui
+    document.getElementById('saldo-antes').innerText = "R$ 1.250,00";
+    document.getElementById('saldo-pos').innerText = "R$ 930,00";
+
+    // 2. A FUNÇÃO QUE ESTAVA FALTANDO:
+    function concluir() {
+        // Redireciona para a nova tela de conclusão com confetes
+        window.location.href = 'fechamento_concluido.html';
+    }
+</script>
+</body>
+</html>

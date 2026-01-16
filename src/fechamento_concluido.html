@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fechamento Concluído | Doces e Mimos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="fechamento_concluido.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body class="concluido-body">
+
+    <div class="main-container">
+        <div class="success-icon-container">
+            <div class="outer-circle">
+                <div class="inner-circle">
+                    <span class="check-mark">✓</span>
+                </div>
+            </div>
+        </div>
+
+        <main class="card-concluido">
+            <div class="tag-sucesso">SUCESSO!</div>
+            
+            <h1 class="titulo-curvo">Fechamento Concluído!</h1>
+            <p class="subtitulo">O caixa do dia foi encerrado com sucesso. Tudo está doce e em ordem!</p>
+
+            <section class="resumo-final-box">
+    <p class="resumo-label">RESUMO DO FECHAMENTO</p>
+    
+    <div class="row-stats">
+        <div class="stat-box">
+            <span class="stat-label">Saldo Final</span>
+            <strong class="text-green" id="saldo-final">R$ 1.254,30</strong>
+        </div>
+        <div class="stat-box">
+            <span class="stat-label">Diferença</span>
+            <strong class="text-pink" id="diferenca-valor">R$ 0,00</strong>
+        </div>
+    </div>
+
+    <div class="info-rodape">
+        <div class="info-linha">
+            <span>Responsável:</span>
+            <strong>Maria Silva</strong>
+        </div>
+        <div class="info-linha">
+            <span>Data/Hora:</span>
+            <strong>24/10/2023 - 18:45</strong>
+        </div>
+    </div>
+</section>
+
+            <div class="botoes-acao">
+                <button class="btn-relatorio">
+                    <span class="icon">📄</span> Ver Relatório
+                </button>
+                <button class="btn-inicio" onclick="window.location.href='index.html'">
+                    <span class="icon">⊞</span> Voltar ao Início
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Dispara explosão de confetes ao carregar
+        window.onload = function() {
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#ff33cc', '#ffeb3b', '#2ecc71', '#4da3ff']
+            });
+        };
+    </script>
+</body>
+</html>

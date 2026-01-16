@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Controle de Caixa | Doces e Mimos</title>
+    <link rel="stylesheet" href="confirmar_sangria.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="sangria-body">
+
+    <header class="header-center">
+        <img src="../assets/Doces e Mimos.png" class="logo-solo" alt="Logo">
+        <h1 class="titulo-controle">Controle de Caixa</h1>
+        <div class="pill-operacao">
+            <span class="icon-cash">📟</span> Operação de Sangria (Retirada)
+        </div>
+    </header>
+
+    <main class="container-central">
+        <section class="card-confirmacao">
+            <div class="top-gradient-bar"></div>
+            
+            <h2 class="form-title">Nova Sangria</h2>
+            <p class="form-subtitle">Registre a retirada de dinheiro do caixa com doçura e segurança! 🍬</p>
+
+            <form id="form-sangria">
+                <div class="input-group">
+                    <label>Valor da Retirada 01 (R$)</label>
+                    <div class="input-with-icon">
+                        <span class="currency-prefix">R$</span>
+                        <input type="number" placeholder="0,00" step="0.01">
+                        <span class="icon-input">💵</span>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Motivo da Sangria 01</label>
+                    <select class="custom-select">
+                        <option value="">Selecione o motivo...</option>
+                        <option value="fornecedor">Pagamento de Fornecedor</option>
+                        <option value="despesa">Despesa Extra</option>
+                        <option value="troco">Reposição de Troco</option>
+                        <option value="valor em caixa excedendo limite">Valor em caixa excedendo limite</option>
+                    </select>
+                </div>
+
+                <hr class="divider">
+
+                <div class="input-group">
+                    <label>Valor da Retirada 02 (R$)</label>
+                    <div class="input-with-icon">
+                        <span class="currency-prefix">R$</span>
+                        <input type="number" placeholder="0,00" step="0.01">
+                        <span class="icon-input">💵</span>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Motivo da Sangria 02</label>
+                    <select class="custom-select">
+                        <option value="">Selecione o motivo...</option>
+                        <option value="fornecedor">Pagamento de Fornecedor</option>
+                        <option value="despesa">Despesa Extra</option>
+                        <option value="troco">Reposição de Troco</option>
+                        <option value="valor em caixa excedendo limite">Valor em caixa excedendo limite</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>Observação (Opcional)</label>
+                    <textarea placeholder="Detalhes adicionais sobre a retirada..." rows="3"></textarea>
+                </div>
+
+                <div class="actions-form">
+                    <button type="button" class="btn-cancelar" onclick="window.history.back()">✕ Cancelar</button>
+                    <button type="submit" class="btn-confirmar-final">✔ Confirmar Sangria</button>
+                </div>
+            </form>
+        </section>
+
+        <footer class="footer-stats">
+            <div class="stat-box saldo-box">
+                <small>SALDO ATUAL</small>
+                <strong>R$ 1.250,00</strong>
+            </div>
+            <div class="stat-box retirado-box">
+                <small>TOTAL RETIRADO</small>
+                <strong class="text-pink">- R$ 320,00</strong>
+            </div>
+        </footer>
+    </main>
+
+    <p class="copyright">© 2024 Doces e Mimos System<br>📖 Manual · 🎧 Suporte</p>
+
+    <script>
+    const inputsValor = document.querySelectorAll('input[type="number"]');
+    const totalDisplay = document.querySelector('.retirado-box strong');
+    const form = document.getElementById('form-sangria');
+
+    // Função para somar os valores enquanto digita
+    function atualizarTotalFinal() {
+        let soma = 0;
+        inputsValor.forEach(input => {
+            soma += parseFloat(input.value) || 0;
+        });
+        const totalFormatado = `R$ ${soma.toLocaleString('pt-BR', {minimumFractionDigits: 2})}`;
+        totalDisplay.innerText = `- ${totalFormatado}`;
+        
+        // Salva temporariamente para a próxima tela
+        localStorage.setItem('totalUltimaSangria', totalFormatado);
+    }
+
+    inputsValor.forEach(input => {
+        input.addEventListener('input', atualizarTotalFinal);
+    });
+
+    // Ao clicar em Confirmar, vai para a tela de sucesso
+    form.addEventListener('submit', function(e) {
+        e.preventDefault(); // Impede o recarregamento da página
+        window.location.href = 'sucesso_sangria.html';
+    });
+</script>
+</body>
+</html>
