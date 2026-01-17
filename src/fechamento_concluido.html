@@ -26,36 +26,34 @@
             <p class="subtitulo">O caixa do dia foi encerrado com sucesso. Tudo está doce e em ordem!</p>
 
             <section class="resumo-final-box">
-    <p class="resumo-label">RESUMO DO FECHAMENTO</p>
-    
-    <div class="row-stats">
-        <div class="stat-box">
-            <span class="stat-label">Saldo Final</span>
-            <strong class="text-green" id="saldo-final">R$ 1.254,30</strong>
-        </div>
-        <div class="stat-box">
-            <span class="stat-label">Diferença</span>
-            <strong class="text-pink" id="diferenca-valor">R$ 0,00</strong>
-        </div>
-    </div>
+                <p class="resumo-label">RESUMO DO FECHAMENTO</p>
+                
+                <div class="row-stats">
+                    <div class="stat-box">
+                        <span class="stat-label">Saldo Final</span>
+                        <strong class="text-green" id="saldo-final">R$ 0,00</strong>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-label">Diferença</span>
+                        <strong class="text-pink" id="diferenca-valor">R$ 0,00</strong>
+                    </div>
+                </div>
 
-    <div class="info-rodape">
-        <div class="info-linha">
-            <span>Responsável:</span>
-            <strong>Maria Silva</strong>
-        </div>
-        <div class="info-linha">
-            <span>Data/Hora:</span>
-            <strong>24/10/2023 - 18:45</strong>
-        </div>
-    </div>
-</section>
+                <div class="info-rodape">
+                    <div class="info-linha">
+                        <span>Responsável:</span>
+                        <strong id="nome-responsavel">Maria Silva</strong>
+                    </div>
+                    <div class="info-linha">
+                        <span>Data/Hora:</span>
+                        <strong id="data-hora-texto">24/10/2023 - 18:45</strong>
+                    </div>
+                </div>
+            </section>
 
             <div class="botoes-acao">
-                <button class="btn-relatorio">
-                    <span class="icon">📄</span> Ver Relatório
-                </button>
-                <button class="btn-inicio" onclick="window.location.href='index.html'">
+                <button class="btn-relatorio-branco" onclick="window.location.href='relatorio_caixa.html'">📄 Ver Relatório</button>
+                <button class="btn-inicio" onclick="voltarAoInicio()">
                     <span class="icon">⊞</span> Voltar ao Início
                 </button>
             </div>
@@ -63,8 +61,46 @@
     </div>
 
     <script>
-        // Dispara explosão de confetes ao carregar
+        function voltarAoInicio() {
+            // Limpa apenas a contagem, mantém o login
+            localStorage.removeItem('dadosContagem');
+            window.location.href = 'dashboard.html';
+        }
+
         window.onload = function() {
+            const SALDO_ESPERADO = 1248.50;
+            const dados = JSON.parse(localStorage.getItem('dadosContagem')) || {};
+            
+            // BUSCA O NOME JÁ FORMATADO PELO SCRIPT-LOGIN.JS
+            const usuarioLogado = localStorage.getItem('usuarioLogado');
+            
+            let total = 0;
+            for (const valor in dados) {
+                total += parseFloat(valor) * dados[valor];
+            }
+
+            const diferenca = total - SALDO_ESPERADO;
+
+            // Atualiza Saldo e Diferença
+            document.getElementById('saldo-final').innerText = total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            
+            const displayDiff = document.getElementById('diferenca-valor');
+            const sinal = diferenca > 0 ? "+ " : (diferenca < 0 ? "- " : "");
+            displayDiff.innerText = sinal + Math.abs(diferenca).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            displayDiff.style.color = diferenca >= 0 ? "#2ecc71" : "#e91e63";
+
+            // ATUALIZA O NOME DO RESPONSÁVEL COM O NOME DO USUÁRIO
+            if (usuarioLogado) {
+                document.getElementById('nome-responsavel').innerText = usuarioLogado;
+            }
+
+            // Atualiza Data e Hora
+            const agora = new Date();
+            document.getElementById('data-hora-texto').innerText = 
+                agora.toLocaleDateString('pt-BR') + " - " + 
+                agora.toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'});
+
+            // Efeito Confete
             confetti({
                 particleCount: 150,
                 spread: 70,

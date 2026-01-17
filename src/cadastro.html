@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novo Cadastro | Doces e Mimos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="cadastro.css">
+</head>
+<body class="cadastro-body">
+
+    <nav class="navbar-cadastro">
+        <div class="nav-brand">🍦 Bomboniere Doces e Mimos</div>
+    </nav>
+
+    <main class="main-container-cadastro">
+        <div class="decor-icon cake">🎂</div>
+
+        <div class="card-cadastro">
+            <div class="col-welcome">
+                <div class="avatar-wrapper">
+                    <div class="speech-bubble">Olá!</div>
+                    <img src="../assets/LILI_PNG2.png" alt="Mascote" class="mascote-img">
+                </div>
+                <h2>Bem-vindo à nossa Bomboniere!</h2>
+                <p>Pronto para adoçar a nossa equipe? Cadastre-se para começar a gerenciar doçuras.</p>
+            </div>
+
+            <div class="col-form">
+                <header class="form-header">
+                    <h1>Novo Cadastro</h1>
+                    <button class="btn-voltar-link" onclick="window.location.href='login.html'">← Voltar</button>
+                </header>
+
+                <form id="form-novo-usuario">
+                    <div class="input-group">
+                        <label>Nome Completo</label>
+                        <div class="input-with-icon">
+                            <span class="icon">👤</span>
+                            <input type="text" id="nome-usuario" placeholder="Como devemos te chamar?" required>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label>E-mail</label>
+                        <div class="input-with-icon">
+                            <span class="icon">✉️</span>
+                            <input type="email" placeholder="seuemail@doce.com" required>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Cargo</label>
+                        <div class="cargo-selection">
+                            <label class="cargo-option">
+                                <input type="radio" name="cargo" value="gestor" checked>
+                                <span class="cargo-card">⭐ Gestor</span>
+                            </label>
+                            <label class="cargo-option">
+                                <input type="radio" name="cargo" value="funcionario">
+                                <span class="cargo-card">👥 Funcionário</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Senha</label>
+                        <div class="input-with-icon">
+                            <span class="icon">🔒</span>
+                            <input type="password" placeholder="Crie uma senha doce" id="input-senha" required>
+                            <span class="view-password icon-eye" onclick="toggleSenha()" style="cursor: pointer;">&#128065;</span>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-finalizar-cadastro">
+                        Finalizar Cadastro 🚀
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer-cadastro">
+        ❤️ Feito com amor pela Doce Equipe
+    </footer>
+
+    <script>
+    // FUNÇÃO PARA MOSTRAR/ESCONDER A SENHA
+    function toggleSenha() {
+        const inputSenha = document.getElementById('input-senha');
+        if (inputSenha.type === "password") {
+            inputSenha.type = "text";
+        } else {
+            inputSenha.type = "password";
+        }
+    }
+
+    // Seleciona o formulário pelo ID
+    const form = document.getElementById('form-novo-usuario');
+
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // CAPTURA O NOME DIGITADO
+            const nomeCompleto = document.getElementById('nome-usuario').value;
+
+            // SALVA O NOME NO NAVEGADOR (para o Login e Dashboard usarem)
+            // Pegamos apenas o primeiro nome para ficar elegante no layout
+            const primeiroNome = nomeCompleto.split(' ')[0];
+            localStorage.setItem('usuarioLogado', primeiroNome);
+            localStorage.setItem('nomeCompleto', nomeCompleto);
+
+
+            console.log("Cadastro realizado com sucesso para:", primeiroNome);
+
+            alert("✨ Cadastro realizado com doçura! Redirecionando para o login...");
+
+            // Redireciona para a tela de login
+            window.location.href = 'login.html';
+        });
+    }
+</script>
+</body>
+</html>

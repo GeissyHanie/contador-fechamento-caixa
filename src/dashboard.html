@@ -14,97 +14,143 @@
 <body>
 
     <header class="navbar">
-        <div class="header-left">
-            <img src="../assets/logo_bomboniere.png" alt="Logo" class="mini-logo">
-            <span class="brand-name">Doces e Mimos</span>
+    <div class="header-left">
+        <img src="../assets/logo_bomboniere.png" alt="Logo" class="mini-logo">
+        <span class="brand-name">Doces e Mimos</span>
+    </div>
+    <div class="header-right">
+        <span class="notif-bell">🔔</span>
+        <div class="user-pill" onclick="togglePainel()" style="cursor: pointer; display: flex; align-items: center; background: #fff1f6; border-radius: 50px; padding: 5px 15px 5px 5px;">
+            <span class="avatar-circle" id="avatar-letra" style="background: #e91e63; color: white; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: bold;">A</span>
+            <span class="user-text" id="nome-topo" style="margin-left: 0px; color: #4a4a4a; font-weight: 500;">Admin</span>
         </div>
-        <div class="header-right">
-            <span class="notif-bell">🔔</span>
-            <div class="user-pill">
-                <span class="avatar-circle">A</span>
-                <span class="user-text">Admin</span>
-            </div>
-        </div>
-    </header>
+    </div>
+</header>
 
     <main class="main-container">
-        
         <section class="hero-section">
             <div class="hero-content">
                 <h1>Bem-vindo ao <span>Mundo Doce!</span></h1>
                 <p>Gerencie sua loja com carinho e praticidade. Selecione uma das opções abaixo para começar.</p>
             </div>
             <div class="bunny-container">
-                <img src="..\assets\LILI_PNG.png" alt="Bunny" class="hero-bunny">
+                <img src="../assets/LILI_PNG.png" alt="Bunny" class="hero-bunny">
             </div>
         </section>
 
         <div class="dashboard-grid">
-            
             <a href="caixa.html" class="dash-card">
-                <div class="icon-wrap pink-bg"><img src="..\assets\controle de caixa.png" alt="Controle de Caixa"></div>
+                <div class="icon-wrap pink-bg">
+                    <img src="../assets/controle de caixa.png" alt="Controle de Caixa">
+                </div>
                 <h3>Controle de Caixa</h3>
                 <p>Abertura, fechamento e conferência de valores diários.</p>
             </a>
 
             <div class="dash-card">
-                <div class="icon-wrap blue-bg"><img src="..\assets\relogio.png" alt="Registro de Ponto"></div>
+                <div class="icon-wrap blue-bg">
+                    <img src="../assets/relogio.png" alt="Registro de Ponto">
+                </div>
                 <h3>Registro de Ponto</h3>
                 <p>Controle de entrada, saída e pausas dos colaboradores.</p>
             </div>
 
             <div class="dash-card">
-                <div class="icon-wrap yellow-bg"><img src="..\assets\manual.png" alt="Manuais"></div>
+                <div class="icon-wrap yellow-bg">
+                    <img src="../assets/manual.png" alt="Manuais">
+                </div>
                 <h3>Manuais</h3>
                 <p>Procedimentos operacionais, receitas e guias da loja.</p>
             </div>
 
             <div class="dash-card wide-card">
-                <div class="icon-wrap green-bg"><img src="..\assets\carrinho.png" alt="Simular Compra"></div>
+                <div class="icon-wrap green-bg">
+                    <img src="../assets/carrinho.png" alt="Simular Compra">
+                </div>
                 <div class="wide-info">
                     <h3>Simular Compra</h3>
-                    <p>Treinamento para novos funcionários. Pratique o registro de itens, aplicação de descontos e formas de pagamento sem afetar o caixa real.</p>
+                    <p>Treinamento para funcionários. Pratique o registro de itens sem afetar o caixa real.</p>
                     <button class="btn-simular">Iniciar Simulação</button>
                 </div>
             </div>
-
         </div>
 
         <section class="summary-container">
-    <h3 class="summary-title">
-        <span class="icon-title">📊</span> Resumo do Dia
-    </h3>
-    <div class="summary-row">
-        <div class="sum-box pink-sum">
-            <span class="label">VENDAS HOJE</span>
-            <span class="value">R$ 1.240,50</span>
-            <span class="trend positive">📈 +12% vs ontem</span>
-        </div>
+            <h3 class="summary-title">📊 Resumo do Dia</h3>
+            <div class="summary-row">
+                <div class="sum-box pink-sum">
+                    <span class="label">VENDAS HOJE</span>
+                    <span class="value">R$ 1.240,50</span>
+                    <span class="trend positive">📈 +12% vs ontem</span>
+                </div>
 
-        <div class="sum-box purple-sum">
-            <span class="label">TICKETS</span>
-            <span class="value">45</span>
-            <span class="trend neutral">🕒 Último há 5min</span>
-        </div>
+                <div class="sum-box purple-sum">
+                    <span class="label">TICKETS</span>
+                    <span class="value">45</span>
+                    <span class="trend neutral">🕒 Último há 5min</span>
+                </div>
 
-        <div class="sum-box yellow-sum">
-            <span class="label">CAIXA ATUAL</span>
-            <span class="value">R$ 350,00</span>
-            <span class="trend alert">🔒 Fechamento pendente</span>
-        </div>
-    </div>
-</section>
-
+                <div class="sum-box yellow-sum">
+                    <span class="label">CAIXA ATUAL</span>
+                    <span class="value">R$ 350,00</span>
+                    <span class="trend alert">🔒 Fechamento pendente</span>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <footer class="main-footer">
-        <p>© 2026 Doces e Mimos Sistema</p>
-        <div class="footer-links">
-            <a href="#">Suporte</a>
-            <a href="#">Configurações</a>
-            <span class="theme-toggle">🌙</span>
-        </div>
-    </footer>
+    <div id="overlay-painel" class="overlay" onclick="togglePainel()"></div>
 
+    <div id="painel-lateral" class="painel-lateral">
+        <div class="header-painel">
+            <button class="btn-voltar-circular" onclick="togglePainel()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            </button>
+        </div>
+
+        <div class="perfil-usuario-central">
+            <div class="moldura-foto">
+                <img src="mascote_admin.png" alt="Gestor" class="foto-perfil">
+            </div>
+            <h2 class="nome-adm" id="nome-lateral">Olá, Admin!</h2>
+            <span class="badge-cargo-adm">GESTOR</span>
+        </div>
+
+        <nav class="links-gestao">
+            <div class="card-menu-item" onclick="window.location.href='perfil.html'" style="cursor: pointer;">
+                <div class="circulo-icone bg-rosa">🏩</div>
+                <div class="textos-menu">
+                    <strong>Meu Perfil</strong>
+                    <span>Dados de acesso administrativo</span>
+                </div>
+                <span class="seta-menu">›</span>
+            </div>
+        </nav>
+
+        <div class="rodape-acoes">
+            <button type="button" class="btn-sair-sistema" onclick="location.href='login.html'">
+                <span>📤</span> Sair do Sistema
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function togglePainel() {
+            const painel = document.getElementById('painel-lateral');
+            const overlay = document.getElementById('overlay-painel');
+            painel.classList.toggle('aberto');
+            overlay.classList.toggle('ativo');
+        }
+
+        window.onload = function() {
+            const nomeCompleto = localStorage.getItem('nomeCompleto');
+            
+            if (nomeCompleto) {
+                document.getElementById('nome-topo').innerText = nomeCompleto;
+                document.getElementById('nome-lateral').innerText = "Olá, " + nomeCompleto + "!";
+                document.getElementById('avatar-letra').innerText = nomeCompleto.charAt(0).toUpperCase();
+            }
+        };
+    </script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-/* Reset de Estilos para garantir consistência em todos os navegadores */
+/* --- RESET --- */
 * {
     margin: 0;
     padding: 0;
@@ -19,6 +19,7 @@ body {
     font-family: 'Poppins', sans-serif;
     color: var(--cinza-texto);
     line-height: 1.6;
+    overflow-x: hidden;
 }
 
 /* --- NAVBAR --- */
@@ -31,42 +32,21 @@ body {
     box-shadow: 0 2px 10px rgba(0,0,0,0.03);
 }
 
-.header-left {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
+.header-left { display: flex; align-items: center; gap: 12px; }
 
-/* Controle rigoroso da logo para não quebrar o layout */
 .mini-logo {
     width: 70px !important;
     height: 45px !important;
     object-fit: contain;
 }
 
-/* Seletor específico para o nome da marca nas telas */
 .brand-name {
     font-family: 'Pacifico', cursive !important;
-    font-weight: 400;
-    color: #e91e63 !important; /* Rosa idêntico ao da imagem */
+    color: var(--rosa-principal) !important;
     font-size: 22px;
-    letter-spacing: 0.5px;
-    text-transform: none; /* Garante que não fique em maiúsculo */
 }
 
-/* Título de Login na tela de entrada */
-h2.font-destaque {
-    font-family: 'Pacifico', cursive !important;
-    font-size: 32px;
-    color: #2d3436; /* Cor escura conforme a imagem de login */
-    margin-bottom: 10px;
-}
-
-.header-right {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
+.header-right { display: flex; align-items: center; gap: 20px; }
 
 .user-pill {
     background: #fdf2f7;
@@ -75,6 +55,12 @@ h2.font-destaque {
     display: flex;
     align-items: center;
     gap: 10px;
+}
+
+/* Isso vai criar o espaço entre o círculo da letra e o nome */
+.user-text {
+    margin-left: 10px; /* Ajuste o número para aumentar ou diminuir o espaço */
+    font-weight: 500;
 }
 
 .avatar-circle {
@@ -89,7 +75,7 @@ h2.font-destaque {
     font-weight: 600;
 }
 
-/* --- HERO SECTION (Boas-vindas) --- */
+/* --- HERO SECTION --- */
 .main-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -106,24 +92,13 @@ h2.font-destaque {
 
 .hero-content h1 {
     font-size: 42px;
-    color: #333;
-    margin-bottom: 15px;
+    font-weight: 700;
+    color: #2d3436;
+    letter-spacing: -1px;
+    line-height: 1.2;
 }
 
-.hero-content h1 span {
-    color: var(--rosa-principal);
-}
-
-.hero-content p {
-    font-size: 18px;
-    color: var(--cinza-claro);
-    max-width: 550px;
-}
-
-/* Controle da imagem do Coelho */
-.bunny-container {
-    flex-shrink: 0; /* Impede que o container diminua */
-}
+.hero-content h1 span { color: var(--rosa-principal); }
 
 .hero-bunny {
     width: 320px;
@@ -136,7 +111,7 @@ h2.font-destaque {
 /* --- GRID DE CARDS --- */
 .dashboard-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 colunas iguais */
+    grid-template-columns: repeat(3, 1fr);
     gap: 25px;
     margin-bottom: 50px;
 }
@@ -149,45 +124,35 @@ h2.font-destaque {
     text-decoration: none;
     color: inherit;
     box-shadow: var(--sombra-suave);
-    transition: all 0.3s ease;
-    border: 1px solid rgba(0,0,0,0.02);
+    transition: 0.3s;
 }
 
-.dash-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 35px rgba(233, 30, 99, 0.08);
+.dash-card:hover { transform: translateY(-8px); }
+
+.dash-card h3 { font-weight: 700; margin-bottom: 8px; color: #2d3436; }
+.dash-card p { font-size: 14px; color: #636e72; font-weight: 500; }
+
+.icon-wrap {
+    background-color: transparent !important;
+    width: auto !important;
+    height: auto !important;
+    margin: 0 auto 15px !important;
+    display: block;
 }
 
-/* Card Simular Compra (Largo) */
+.icon-wrap img {
+    width: 69px !important;
+    height: auto !important;
+    object-fit: contain;
+}
+
 .wide-card {
-    grid-column: span 2; /* Ocupa duas colunas */
+    grid-column: span 2;
     display: flex;
     text-align: left;
     align-items: center;
     gap: 30px;
 }
-
-.icon-wrap {
-    width: 45px !important;
-    height: 45px !important;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px !important;
-    margin: 0 auto 10px !important;
-}
-
-.wide-card .icon-wrap {
-    margin-bottom: 0;
-    min-width: 90px;
-    height: 90px;
-    font-size: 40px;
-}
-
-/* Cores de Fundo dos Ícones */
-.pink-bg { background: #fff0f5; }
-.orange-bg { background: #fff4f0; }
 
 .btn-simular {
     background: #2ecc71;
@@ -198,197 +163,105 @@ h2.font-destaque {
     font-weight: 600;
     margin-top: 15px;
     cursor: pointer;
-    transition: 0.2s;
 }
-
-.btn-simular:hover { background: #27ae60; }
 
 /* --- RESUMO DO DIA --- */
-.summary-container {
-    margin-top: 40px;
-}
+.summary-container { margin-top: 50px; padding: 0 5%; }
+.summary-title { font-weight: 700; font-size: 22px; color: #2d3436; margin-bottom: 25px; display: flex; align-items: center; gap: 10px; }
 
-.summary-title {
-    margin-bottom: 20px;
-    font-size: 20px;
-}
+.summary-row { display: flex; gap: 20px; flex-wrap: wrap; }
 
-.summary-row {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-}
-
-.sum-box {
-    flex: 1;
-    min-width: 200px;
-    padding: 20px;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-}
-
-.sum-box .label { font-size: 12px; font-weight: 600; color: var(--cinza-claro); }
-.sum-box .value { font-size: 22px; font-weight: 600; margin: 5px 0; }
-.sum-box .trend { font-size: 11px; font-weight: 500; }
-
-.pink-sum { background: #fdf2f7; }
-.purple-sum { background: #f5f2fd; }
-.yellow-sum { background: #fdfcf2; }
-.blue-sum { background: #f2f8fd; }
-
-/* --- FOOTER --- */
-.main-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 30px 5%;
-    border-top: 1px solid #eee;
-    margin-top: 50px;
-    font-size: 13px;
-    color: var(--cinza-claro);
-}
-
-.footer-links {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.footer-links a { text-decoration: none; color: inherit; }
-.theme-toggle { cursor: pointer; font-size: 18px; }
-
-/* --- RESPONSIVIDADE --- */
-@media (max-width: 900px) {
-    .dashboard-grid { grid-template-columns: 1fr 1fr; }
-    .wide-card { grid-column: span 2; }
-    .hero-section { flex-direction: column; text-align: center; }
-    .hero-content p { margin: 0 auto; }
-}
-
-@media (max-width: 600px) {
-    .dashboard-grid { grid-template-columns: 1fr; }
-    .wide-card { grid-column: span 1; flex-direction: column; text-align: center; }
-}
-
-.hero-content h1, .dash-card h3 {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700; /* Peso forte para impacto */
-    color: #2d3436; /* Cinza escuro quase preto */
-    letter-spacing: -1px; /* Letras mais próximas como no design */
-    line-height: 1.2;
-}
-
-.hero-content h1 span {
-    color: #e91e63; /* "Mundo Doce" em rosa */
-}
-
-/* Estilo para a descrição pequena dentro dos cards do dashboard */
-.dash-card p {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 500;
-    color: #636e72;
-    font-size: 14px;
-    line-height: 1.4; /* Melhora a leitura do texto pequeno */
-}
-
-/* Reduz o tamanho da imagem da caixa registradora */
-.icon-wrap img {
-    width: 54px !important; /* Ajuste este valor para o tamanho que desejar */
-    height: auto !important;
-    object-fit: contain;
-}
-
-/* Remove o círculo rosa e mantém apenas a imagem */
-.dash-card .icon-wrap.pink-bg {
-    background: none !important;      /* Remove a cor rosa de fundo */
-    background-color: transparent !important; /* Garante que fique transparente */
-    box-shadow: none !important;      /* Remove qualquer sombra do círculo */
-    width: auto !important;           /* Deixa a largura livre para a imagem */
-    height: auto !important;          /* Deixa a altura livre para a imagem */
-    margin: 0 auto 15px !important;   /* Ajusta o espaço entre a imagem e o texto */
-}
-
-/* Ajusta o tamanho da imagem da caixa registradora agora sem o círculo */
-.dash-card .icon-wrap.pink-bg img {
-    width: 69px !important;           /* Ajuste esse valor para o tamanho que desejar */
-    height: auto !important;
-    display: block;
-    margin: 0 auto;
-}
-
-/* Container de Resumo */
-.summary-container {
-    margin-top: 50px;
-    padding: 0 5%;
-}
-
-.summary-title {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-    font-size: 22px;
-    color: #2d3436;
-    margin-bottom: 25px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-/* Linha de Cards */
-.summary-row {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-/* Estilo Individual do Card de Resumo */
 .sum-box {
     flex: 1;
     min-width: 250px;
     padding: 30px;
-    border-radius: 40px; /* Bordas bem arredondadas como na imagem */
+    border-radius: 40px;
     display: flex;
     flex-direction: column;
     gap: 8px;
-    border: none;
 }
 
-/* Labels e Valores */
-.sum-box .label {
-    font-size: 14px;
-    font-weight: 600;
-    color: #888;
-    letter-spacing: 0.5px;
-}
+.sum-box .label { font-size: 14px; font-weight: 600; color: #888; }
+.sum-box .value { font-size: 32px; font-weight: 700; }
+.sum-box .trend { font-size: 13px; font-weight: 500; }
 
-.sum-box .value {
-    font-size: 32px;
-    font-weight: 700;
-}
-
-.sum-box .trend {
-    font-size: 13px;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-/* Cores Específicas da Imagem */
-.pink-sum { 
-    background-color: #fff0f6; /* Fundo rosa claro */
-}
-.pink-sum .value { color: #e91e63; }
-.pink-sum .trend { color: #2ecc71; } /* Verde para tendência positiva */
-
-.purple-sum { 
-    background-color: #f8f0ff; /* Fundo roxo claro */
-}
+.pink-sum { background-color: #fff0f6; }
+.pink-sum .value { color: var(--rosa-principal); }
+.purple-sum { background-color: #f8f0ff; }
 .purple-sum .value { color: #9c27b0; }
-.purple-sum .trend { color: #b2bec3; }
-
-.yellow-sum { 
-    background-color: #fffdf0; /* Fundo amarelo claro */
-}
+.yellow-sum { background-color: #fffdf0; }
 .yellow-sum .value { color: #b08900; }
-.yellow-sum .trend { color: #b2bec3; }
+
+/* --- PAINEL LATERAL (ESTILO GESTOR) --- */
+.painel-lateral {
+    position: fixed;
+    top: 0;
+    right: -420px;
+    width: 400px;
+    height: 100%;
+    background-color: white;
+    background-image: radial-gradient(#f9cedf 1.5px, transparent 1.5px);
+    background-size: 24px 24px;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.05);
+    z-index: 2000;
+    transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.painel-lateral.aberto { right: 0; }
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(2px);
+    display: none;
+    z-index: 1999;
+}
+
+.overlay.ativo { display: block; }
+
+.btn-voltar-circular {
+    width: 42px; height: 42px; border-radius: 50%; border: 1px solid #eee;
+    background: white; cursor: pointer; display: flex; align-items: center; justify-content: center;
+}
+
+.perfil-usuario-central { text-align: center; margin-bottom: 35px; }
+.moldura-foto { position: relative; width: 130px; margin: 0 auto 15px; }
+.foto-perfil { width: 130px; height: 130px; border-radius: 50%; border: 4px solid var(--rosa-principal); padding: 5px; }
+.btn-edit-foto { position: absolute; bottom: 5px; right: 5px; background: var(--rosa-principal); color: white; border: none; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; }
+
+.badge-cargo-adm { background: #fff0f6; color: var(--rosa-principal); padding: 6px 20px; border-radius: 20px; font-size: 11px; font-weight: 800; letter-spacing: 1px; }
+
+.card-menu-item {
+    display: flex; align-items: center; background: white; padding: 18px;
+    border-radius: 25px; margin-bottom: 12px; border: 1px solid #f9ebf2;
+    cursor: pointer; transition: 0.3s;
+}
+.card-menu-item:hover { transform: scale(1.02); border-color: var(--rosa-principal); }
+
+.circulo-icone { width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-right: 15px; }
+.bg-rosa { background: #fff0f6; }
+.bg-vermelho { background: #fff5f5; }
+.bg-roxo { background: #f8f5ff; }
+
+.textos-menu strong { display: block; font-size: 15px; color: #333; }
+.textos-menu span { font-size: 11px; color: #a0aec0; }
+.seta-menu { margin-left: auto; color: #ccc; font-size: 22px; }
+
+.btn-sair-sistema {
+    width: 100%; background: var(--rosa-principal); color: white; border: none;
+    padding: 18px; border-radius: 22px; font-weight: 700; font-size: 16px;
+    cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;
+    margin-top: auto;
+}
+
+.id-versao { font-size: 10px; color: #ccc; margin-top: 15px; letter-spacing: 1.5px; text-align: center; }
+
+/* --- FOOTER --- */
+.main-footer { display: flex; justify-content: space-between; align-items: center; padding: 30px 5%; border-top: 1px solid #eee; margin-top: 50px; font-size: 13px; color: var(--cinza-claro); }

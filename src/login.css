@@ -25,9 +25,11 @@ body {
 }
 
 .logo {
-    width: 118px;
-    height: 80px;
+    width: 160px;
+    height: 160px;
     margin: 5px auto 20px;
+    margin-top: -29px;
+    margin-bottom: -59px;
 }
 
 /* Títulos */

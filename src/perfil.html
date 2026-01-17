@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Perfil | Mundo Doce</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="perfil.css">
+</head>
+<body class="perfil-body">
+
+    <div class="perfil-container">
+        <a href="dashboard.html" class="btn-voltar-perfil">
+            <span class="seta-voltar">←</span> Voltar
+        </a>
+
+        <div class="perfil-header">
+            <div class="avatar-wrapper">
+                <div class="avatar-circle">
+                    <img src="mascote_admin.png" alt="Avatar" class="avatar-img">
+                </div>
+                <button class="btn-camera">📷</button>
+            </div>
+            <h1>Meu Perfil</h1>
+            <span class="badge-cargo">GESTOR ADMINISTRATIVO</span>
+        </div>
+
+        <div class="perfil-info-section">
+            <h3 class="section-title">👤 INFORMAÇÕES PESSOAIS</h3>
+            
+            <div class="input-group">
+                <label>Nome</label>
+                <div class="input-readonly">
+                    <input type="text" value="Admin Mundo Doce" readonly>
+                    <span class="icon-right">🔒</span>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>E-mail</label>
+                <div class="input-readonly">
+                    <input type="email" value="admin@mundodoce.com" readonly>
+                    <span class="icon-right">🔒</span>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Cargo</label>
+                <div class="input-readonly">
+                    <input type="text" value="Gestor" readonly>
+                    <span class="icon-right">🏢</span>
+                </div>
+            </div>
+
+            <div class="info-alert">
+                <div class="info-icon">i</div>
+                <p>Para atualizar suas informações básicas, entre em contato com o suporte do sistema.</p>
+            </div>
+
+            <div class="perfil-actions">
+                <button class="btn-primary-pink" onclick="window.location.href='trocar_senha.html'">🔑 Alterar Senha
+                </button>
+                <button class="btn-secondary-white" onclick="javascript:location.href='login.html'">Sair da Sessão</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer-perfil">
+        <div class="footer-icons">🍦 🧁 🍰</div>
+        <p>BOMBONIERE DOCES E MIMOS © 2026</p>
+    </footer>
+
+</body>
+</html>

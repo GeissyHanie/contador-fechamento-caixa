@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperar Senha | Doces e Mimos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="recuperar_senha.css">
+</head>
+<body class="recuperar-body">
+
+    <nav class="navbar-recuperar">
+        <div class="nav-brand">🏩 Doces e Mimos</div>
+    </nav>
+
+    <main class="container-recuperar">
+        <div class="card-recuperar">
+            <div class="avatar-container">
+                <div class="avatar-bg">
+                    <img src="../assets/LILI_PNG2.png" alt="Mascote" class="mascote-img">
+                </div>
+                <div class="mini-tag">👑</div>
+            </div>
+
+            <h1>Esqueceu seu doce segredo?</h1>
+            <p class="instrucao">Não se preocupe! Informe seu e-mail abaixo e enviaremos um <span class="link-magico-text">link mágico</span> para você recuperar sua senha.</p>
+
+            <form id="form-recuperar">
+                <div class="input-group">
+                    <label>Digite seu e-mail</label>
+                    <input type="email" placeholder="seu-email@doce.com" required>
+                </div>
+
+                <button type="submit" class="btn-enviar-link">
+                    <span>➤</span> Enviar Link Mágico
+                </button>
+            </form>
+
+            <a href="login.html" class="link-voltar">Lembrei minha senha! Voltar ao login</a>
+        </div>
+    </main>
+
+    <footer class="footer-recuperar">
+        <div class="nuvens-decor">☁️ ☁️ ☁️</div>
+        <p>© 2026 Doces e Mimos S.A.</p>
+    </footer>
+<script>
+    document.getElementById('form-recuperar').addEventListener('submit', function(e) {
+        e.preventDefault(); // Impede o recarregamento da página
+
+        // Simulação de envio
+        const btn = e.target.querySelector('button');
+        btn.innerText = "Enviando Doçura... ✨";
+        btn.style.opacity = "0.7";
+        btn.disabled = true;
+
+        setTimeout(() => {
+            alert("🍩 Link Mágico enviado! Verifique sua caixa de entrada.");
+            window.location.href = 'login.html'; // Retorna ao login após o sucesso
+        }, 2000);
+    });
+</script>
+</body>
+</html>

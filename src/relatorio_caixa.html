@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fechamento Detalhado | Candy Store Manager</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="relatorio_caixa.css">
+</head>
+<body class="relatorio-body">
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="brand">🏩 Doces e Mimos</div>
+            <div class="menu-central">
+                <span onclick="window.location.href='dashboard.html'" style="cursor: pointer;">Dashboard</span>
+    
+                <span class="active">Relatórios</span>
+    
+                <span onclick="window.location.href='caixa.html'" style="cursor: pointer;">Caixa</span>
+        </div>
+            <div class="nav-btns">
+                <button class="btn-pdf" onclick="gerarPDF()">📄 Exportar PDF</button>
+                <button class="btn-print" onclick="window.print()">🖨️ Imprimir</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-container">
+        <header class="header-relatorio">
+            <div class="titulo-grupo">
+                <span class="tag">📊 RELATÓRIO FINANCEIRO</span>
+                <h1>Fechamento de Caixa</h1>
+                <p>Confira os valores e movimentações do turno para validação da gerência.</p>
+            </div>
+            <div class="info-turno">
+                <p><strong>DATA E HORA:</strong> 24/05/2024 - 18:30</p>
+                <p><strong>OPERADOR:</strong> 📍 Maria Oliveira</p>
+                <p><strong>ID TURNO:</strong> #TRN-99283</p>
+            </div>
+        </header>
+
+        <section class="cards-resumo">
+            <div class="card-resumo azul">
+                <span>SALDO INICIAL</span>
+                <h2>R$ 200,00</h2>
+                <p>✓ Fundo de troco padrão</p>
+            </div>
+            <div class="card-resumo rosa">
+                <span>TOTAL SANGRIAS</span>
+                <h2>R$ 50,00</h2>
+                <p>↓ Retiradas do caixa</p>
+            </div>
+            <div class="card-resumo verde">
+                <span>SALDO FINAL</span>
+                <h2>R$ 1.450,00</h2>
+                <p>📈 Líquido: R$ 1.250,00</p>
+            </div>
+        </section>
+
+        <div class="grid-conteudo">
+            <section class="painel-branco">
+                <h3>🏧 Detalhamento da Contagem</h3>
+                <table class="tabela-contagem">
+                    <thead>
+                        <tr><th>DENOMINAÇÃO</th><th>QTD.</th><th>SUBTOTAL</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>💵 Notas R$ 100</td><td>10</td><td>R$ 1.000,00</td></tr>
+                        <tr><td>💵 Notas R$ 50</td><td>4</td><td>R$ 200,00</td></tr>
+                        <tr><td>💵 Notas R$ 20</td><td>10</td><td>R$ 200,00</td></tr>
+                        <tr><td>💵 Notas R$ 10</td><td>0</td><td>R$ 0,00</td></tr>
+                        <tr><td>💵 Notas R$ 5</td><td>0</td><td>R$ 0,00</td></tr>
+                        <tr><td>💵 Notas R$ 2</td><td>0</td><td>R$ 0,00</td></tr>
+                        <tr><td>🍊 Moedas R$ 1,00</td><td>40</td><td>R$ 40,00</td></tr>
+                        <tr><td>🍊 Moedas R$ 0,50</td><td>20</td><td>R$ 10,00</td></tr>
+                        <tr><td>🍊 Moedas R$ 0,25</td><td>0</td><td>R$ 0,00</td></tr>
+                        <tr><td>🍊 Moedas R$ 0,10</td><td>0</td><td>R$ 0,00</td></tr>
+                        <tr><td>🍊 Moedas R$ 0,05</td><td>0</td><td>R$ 0,00</td></tr>
+                    </tbody>
+                    <tfoot>
+                        <tr class="total-destaque">
+                            <td colspan="2">TOTAL CONTADO</td>
+                            <td>R$ 1.450,00</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </section>
+
+            <div class="coluna-apoio">
+                <section class="painel-branco">
+                    <h3 class="titulo-sangria">💸 Sangrias (Retiradas)</h3>
+                    <div class="item-sangria">
+                        <div><strong>Compra de leite condensado</strong><span>14:20 • Maria</span></div>
+                        <span class="valor-sangria">- R$ 35,00</span>
+                    </div>
+                    <div class="item-sangria">
+                        <div><strong>Pagamento Frete Loggi</strong><span>11:05 • Maria</span></div>
+                        <span class="valor-sangria">- R$ 15,00</span>
+                    </div>
+                </section>
+
+                <section class="painel-branco validacao">
+                    <h3>🔐 Espaço da Gerência</h3>
+                    <label class="check-box">
+                        <input type="checkbox" id="conferido-fisico">
+                        O valor físico confere com o sistema?
+                    </label>
+                    <div class="campo-obs">
+                        <label>Observação da Gerência (Caso haja erro ou falta):</label>
+                        <textarea id="obs-gerencia" placeholder="Digite aqui os detalhes da conferência..."></textarea>
+                    </div>
+                    <div class="campo-obs">
+                        <label>Responsável:</label>
+                        <select id="quem-validou">
+                            <option value="">Selecione...</option>
+                            <option value="Geissy">Geissy</option>
+                            <option value="Gezilene">Gezilene</option>
+                        </select>
+                    </div>
+                    <button class="btn-finalizar" onclick="validarEEncerrar()">Validar e Encerrar Turno</button>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function validarEEncerrar() {
+    const responsavel = document.getElementById('quem-validou').value;
+    
+    if (!responsavel) {
+        alert("⚠️ Selecione o responsável pela conferência.");
+        return;
+    }
+
+    if (confirm("Deseja confirmar a validação e finalizar o expediente?")) {
+        // Redireciona para a nova tela de sucesso que criamos agora
+        window.location.href = 'validacao_relatorio.html';
+    }
+}
+
+function gerarPDF() {
+    // Abre a janela de impressão do sistema, que permite "Salvar como PDF"
+    window.print();
+}
+    </script>
+</body>
+</html>

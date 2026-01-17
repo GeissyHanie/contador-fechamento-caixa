@@ -14,7 +14,7 @@
             <span class="store-icon">🏪</span>
             <span>Bomboniere Doces e Mimos</span>
         </div>
-        <button class="btn-exit">Sair ➔</button>
+        <button type="button" class="btn-exit" onclick="window.location.href='login.html'">Sair ➔</button>
     </header>
 
     <main class="content-wrapper">
@@ -48,21 +48,21 @@
             <p class="instruction">
                 <span id="pergunta-nota">Quantas notas de <strong id="texto-nota-pergunta">R$ 200</strong> você tem?</span>
                 <span id="pergunta-moeda" style="display: none;">Quantas moedas de <strong id="texto-moeda-pergunta">R$ 1,00</strong> você tem?</span>
-</p>
+            </p>
 
             <div class="counter-control">
-                <button class="count-btn" onclick="alterarValor(-1)">−</button>
+                <button type="button" class="count-btn" onclick="alterarValor(-1)">−</button>
                 <input type="text" id="contador" value="0" readonly class="count-display">
-                <button class="count-btn" onclick="alterarValor(1)">+</button>
+                <button type="button" class="count-btn" onclick="alterarValor(1)">+</button>
             </div>
 
-            <button class="primary-action-btn" onclick="proximaEtapa()">Confirmar e Próximo ➔</button>
+            <button type="button" class="primary-action-btn" onclick="proximaEtapa()">Confirmar e Próximo ➔</button>
             
             <div class="secondary-actions">
-                <button class="btn-link-back" onclick="voltarEtapa()">
+                <button type="button" class="btn-link-back" onclick="voltarEtapa()">
                     <span class="seta-voltar">←</span> Voltar
                 </button>
-                <button class="btn-link-skip" onclick="proximaEtapa()">PULAR ESTA NOTA</button>
+                <button type="button" class="btn-link-skip" onclick="proximaEtapa()">PULAR ESTA NOTA</button>
             </div>
         </div>
 
@@ -78,119 +78,19 @@
                 <div class="sum-icon pink">📋</div>
                 <div class="sum-details">
                     <label>SALDO ESPERADO</label>
-                    <strong>R$ 1.248,50</strong>
+                    <strong id="saldo-esperado-texto">R$ 1.248,50</strong>
                 </div>
             </div>
             <div class="sum-item">
                 <div class="sum-icon green">⚖️</div>
                 <div class="sum-details">
                     <label>DIFERENÇA</label>
-                    <strong class="diff-positive">+ R$ 0,00</strong>
+                    <strong id="valor-diferenca" class="diff-positive">+ R$ 0,00</strong>
                 </div>
             </div>
         </div>
     </main>
 
-    <script>
-        // LISTA DE NOTAS
-        const itensCaixa = [
-            { valor: "200,00", texto: "R$ 200", img: "../assets/nota200.jpg", tipo: "nota" },
-            { valor: "100,00", texto: "R$ 100", img: "../assets/nota100.jpeg", tipo: "nota" },
-            { valor: "50,00",  texto: "R$ 50",  img: "../assets/nota50.jpeg", tipo: "nota" },
-            { valor: "20,00",  texto: "R$ 20",  img: "../assets/nota20.jpeg", tipo: "nota" },
-            { valor: "10,00",  texto: "R$ 10",  img: "../assets/nota10.jpeg", tipo: "nota" },
-            { valor: "5,00",   texto: "R$ 5",   img: "../assets/nota5.jpeg", tipo: "nota" },
-            { valor: "2,00",   texto: "R$ 2",   img: "../assets/nota2.jpeg", tipo: "nota" },
-            { valor: "1,00",   texto: "R$ 1",   img: "../assets/moeda1.png", tipo: "moeda" },
-            { valor: "0,50",   texto: "R$ 0,50",   img: "../assets/moeda50.png", tipo: "moeda" },
-            { valor: "0,25",   texto: "R$ 0,25",   img: "../assets/moeda25.png", tipo: "moeda" },
-            { valor: "0,10",   texto: "R$ 0,10",   img: "../assets/moeda10.png", tipo: "moeda" },
-            { valor: "0,05",   texto: "R$ 0,05",   img: "../assets/moeda5.png", tipo: "moeda" }
-        ];
-
-        let etapaAtual = 0;
-
-        // FUNÇÃO PARA AUMENTAR/DIMINUIR O CONTADOR
-        function alterarValor(delta) {
-            const input = document.getElementById('contador');
-            if (input) {
-                let valor = parseInt(input.value) || 0;
-                valor = Math.max(0, valor + delta);
-                input.value = valor;
-            }
-        }
-
-        // FUNÇÃO PARA ATUALIZAR A TELA (FOTO E TEXTO)
-        function atualizarTela() {
-    const item = itensCaixa[etapaAtual];
-
-    // Atualiza imagem e valor
-    document.getElementById('img-nota').src = item.img;
-    document.getElementById('valor-nota-display').innerText = `R$ ${item.valor}`;
-    document.getElementById('contador').value = 0;
-
-    const areaNota = document.getElementById('pergunta-nota');
-    const areaMoeda = document.getElementById('pergunta-moeda');
-
-    // 🔥 AQUI está a lógica que faltava
-    if (item.tipo === "moeda") {
-        areaNota.style.display = "none";
-        areaMoeda.style.display = "inline";
-        document.getElementById('texto-moeda-pergunta').innerText = item.texto;
-    } else {
-        areaNota.style.display = "inline";
-        areaMoeda.style.display = "none";
-        document.getElementById('texto-nota-pergunta').innerText = item.texto;
-    }
-
-    // Progresso
-    const porcentagem = ((etapaAtual + 1) / itensCaixa.length) * 100;
-    document.querySelector('.step-indicator').innerText =
-        `📋 Etapa ${etapaAtual + 1} de ${itensCaixa.length}`;
-    document.querySelector('.progress-bar').style.width = porcentagem + "%";
-    document.querySelector('.progress-knob').style.left = porcentagem + "%";
-}
-
-        // FUNÇÃO PARA O BOTÃO PRÓXIMO
-        // Crie um objeto para guardar as quantidades
-let memoriaContagem = {};
-
-function proximaEtapa() {
-    const inputContador = document.getElementById('contador');
-    const qtd = parseInt(inputContador.value) || 0;
-    const itemAtual = itensCaixa[etapaAtual];
-    
-    // 1. Salva na memória temporária
-    // Criamos um objeto se ele não existir
-    let memoria = JSON.parse(localStorage.getItem('dadosContagem')) || {};
-    memoria[itemAtual.valor] = qtd;
-    localStorage.setItem('dadosContagem', JSON.stringify(memoria));
-
-    // 2. Verifica se vai para a próxima nota ou para a revisão
-    if (etapaAtual < itensCaixa.length - 1) {
-        etapaAtual++;
-        atualizarTela();
-    } else {
-        // MUITO IMPORTANTE: O nome do arquivo aqui deve ser igual ao que você salvou
-        window.location.href = 'revisao.html'; 
-    }
-}
-
-        // FUNÇÃO PARA O BOTÃO VOLTAR
-        function voltarEtapa() {
-            if (etapaAtual > 0) {
-                etapaAtual--;
-                atualizarTela();
-            }
-        }
-
-        // INICIALIZAÇÃO ASSIM QUE A PÁGINA CARREGA
-        window.onload = function() {
-            atualizarTela();
-
-        };
-    </script>
-</body>
-</html>
+    <script src="script-caixa.js"></script>
 </body>
 </html>

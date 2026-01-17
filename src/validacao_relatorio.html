@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório Finalizado | Candy Store Manager</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="validacao_relatorio.css">
+</head>
+<body class="corpo-sucesso">
+
+    <div class="container-central">
+        <div class="cabecalho-logo">
+            <span class="logo-pink">🏩 Doces e Mimos</span>
+        </div>
+
+        <div class="card-sucesso-final">
+            <div class="circulo-icone">
+                <div class="cone-festa">🎉</div>
+                <div class="badge-doce">🧁</div>
+            </div>
+
+            <h1 class="titulo-sucesso">Relatório Finalizado <br> <span>com Sucesso!</span></h1>
+            
+        <p class="legenda">O fechamento foi concluído e as informações foram salvas.</p>
+
+            <div class="acoes-finais">
+                <button class="btn-branco-pdf" onclick="window.print()">
+                    <span class="icon-pdf">📄</span> Baixar PDF do Relatório
+                </button>
+                <button class="btn-rosa-inicio" onclick="window.location.href='login.html'">
+                    <span class="icon-home">🏠</span> Voltar ao Início
+                </button>
+            </div>
+
+            <div class="rodape-mensagem">
+                <p>✓ Dever cumprido por hoje! Bom descanso.</p>
+            </div>
+        </div>
+    </div>
+<script>
+    function estourarConfetes() {
+        const cores = ['#f45095', '#ffcc00', '#00ccff', '#ff69b4', '#9370db']; // Cores dos confetes
+        const container = document.body; // Onde os confetes vão aparecer
+
+        for (let i = 0; i < 100; i++) { // Cria 100 confetes
+            const confete = document.createElement('div');
+            confete.classList.add('confete');
+            confete.style.backgroundColor = cores[Math.floor(Math.random() * cores.length)];
+            confete.style.left = Math.random() * 100 + 'vw'; // Posição horizontal aleatória
+            confete.style.animationDuration = Math.random() * 2 + 3 + 's'; // Duração aleatória (3 a 5s)
+            confete.style.animationDelay = Math.random() * 0.5 + 's'; // Pequeno delay
+            
+            container.appendChild(confete);
+            
+            // Remove o confete depois da animação para não sobrecarregar
+            confete.addEventListener('animationend', () => {
+                confete.remove();
+            });
+        }
+    }
+
+    // Chama a função de confetes quando a página carregar
+    window.onload = estourarConfetes;
+</script>
+</body>
+</html>

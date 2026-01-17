@@ -1,0 +1,73 @@
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+.recuperar-body {
+    /* Fundo pontilhado rosa padronizado */
+    background-color: #fdf2f7;
+    background-image: radial-gradient(#f9cedf 1.5px, transparent 1.5px);
+    background-size: 20px 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* NAVBAR */
+.navbar-recuperar {
+    padding: 20px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.nav-brand { font-weight: 700; color: #333; font-size: 18px; }
+.nav-icons-right { display: flex; gap: 15px; }
+
+/* CARD CENTRAL */
+.container-recuperar { flex: 1; display: flex; justify-content: center; align-items: center; padding: 20px; }
+
+.card-recuperar {
+    background: white; width: 100%; max-width: 500px;
+    border-radius: 50px; padding: 50px 40px;
+    text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+}
+
+/* AVATAR */
+.avatar-container { position: relative; width: 160px; height: 160px; margin: 0 auto 30px; }
+.avatar-bg {
+    width: 100%; height: 100%; background: #f9cedf;
+    border-radius: 50%; overflow: hidden; border: 5px solid white;
+    box-shadow: 0 10px 20px rgba(244, 80, 149, 0.2);
+}
+.mascote-img { width: 100%; height: 100%; object-fit: cover; }
+.mini-tag {
+    position: absolute; top: 10px; right: 10px;
+    background: #ffeb3b; border-radius: 50%; width: 30px; height: 30px;
+    display: flex; align-items: center; justify-content: center; font-size: 14px;
+}
+
+/* TEXTOS */
+h1 { color: #f45095; font-size: 26px; margin-bottom: 15px; font-weight: 700; }
+.instrucao { color: #777; font-size: 14px; line-height: 1.6; margin-bottom: 30px; }
+.link-magico-text { color: #f45095; font-weight: 700; }
+
+/* FORMULÁRIO */
+.input-group { text-align: left; margin-bottom: 25px; }
+.input-group label { display: block; font-size: 12px; font-weight: 700; color: #444; margin-bottom: 8px; }
+.input-group input {
+    width: 100%; padding: 15px 20px; border-radius: 20px;
+    border: 1.5px solid #f9ebf2; background: #fff9fb; outline: none;
+    font-size: 14px; transition: 0.3s;
+}
+.input-group input:focus { border-color: #f45095; }
+
+.btn-enviar-link {
+    width: 100%; background: #f45095; color: white; border: none;
+    padding: 18px; border-radius: 25px; font-weight: 700; font-size: 15px;
+    cursor: pointer; transition: 0.3s; margin-bottom: 25px;
+}
+.btn-enviar-link:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(244, 80, 149, 0.3); }
+
+.link-voltar { display: block; color: #f45095; text-decoration: none; font-size: 13px; font-weight: 600; }
+.link-voltar:hover { text-decoration: underline; }
+
+/* RODAPÉ */
+.footer-recuperar { padding: 30px; text-align: center; color: #bbb; font-size: 11px; }
+.nuvens-decor { font-size: 20px; margin-bottom: 10px; opacity: 0.5; }

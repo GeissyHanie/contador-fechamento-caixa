@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="caixa.css">
     <style>
-        /* Garante que a página role e não corte o conteúdo */
+        /* Mantendo seu estilo original exatamente como estava */
         body.caixa-body {
             height: auto;
             min-height: 100vh;
@@ -21,7 +21,6 @@
             margin: 0 auto 30px auto;
         }
 
-        /* Layout dos Grids */
         .grid-revisao {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -43,7 +42,6 @@
             object-fit: contain;
         }
 
-        /* Moedas redondas como na referência */
         .moeda-layout {
             grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
         }
@@ -102,26 +100,27 @@
                 <div class="footer-actions">
                     <button class="btn-link-back" onclick="window.location.href='caixa.html'">← Voltar</button>
                     <button class="primary-action-btn btn-sangria" style="width: auto;" onclick="realizarSangria()">💸 Sangria</button>
-                    <button class="primary-action-btn" style="width: auto;" onclick="confirmarContagem()">Confirmar Contagem ✓</button>
+                    <button type="button" class="primary-action-btn" style="width: auto;" onclick="confirmarContagem()">Confirmar Contagem ✓</button>
                 </div>
             </div>
         </div>
     </main>
 
     <script>
+        // Lista original corrigida para bater com o localStorage numérico
         const itens = [
-            { valor: "200,00", texto: "R$ 200", img: "../assets/nota200.jpg", tipo: "nota" },
-            { valor: "100,00", texto: "R$ 100", img: "../assets/nota100.jpeg", tipo: "nota" },
-            { valor: "50,00",  texto: "R$ 50",  img: "../assets/nota50.jpeg",  tipo: "nota" },
-            { valor: "20,00",  texto: "R$ 20",  img: "../assets/nota20.jpeg",  tipo: "nota" },
-            { valor: "10,00",  texto: "R$ 10",  img: "../assets/nota10.jpeg",  tipo: "nota" },
-            { valor: "5,00",   texto: "R$ 5",   img: "../assets/nota5.jpeg",   tipo: "nota" },
-            { valor: "2,00",   texto: "R$ 2",   img: "../assets/nota2.jpeg",   tipo: "nota" },
-            { valor: "1,00",   texto: "R$ 1",   img: "../assets/moeda1.png",   tipo: "moeda" },
-            { valor: "0,50",   texto: "R$ 0,50", img: "../assets/moeda50.png", tipo: "moeda" },
-            { valor: "0,25",   texto: "R$ 0,25", img: "../assets/moeda25.png", tipo: "moeda" },
-            { valor: "0,10",   texto: "R$ 0,10", img: "../assets/moeda10.png", tipo: "moeda" },
-            { valor: "0,05",   texto: "R$ 0,05", img: "../assets/moeda5.png",  tipo: "moeda" }
+            { valor: 200.00, texto: "R$ 200", img: "../assets/nota200.jpg", tipo: "nota" },
+            { valor: 100.00, texto: "R$ 100", img: "../assets/nota100.jpeg", tipo: "nota" },
+            { valor: 50.00,  texto: "R$ 50",  img: "../assets/nota50.jpeg",  tipo: "nota" },
+            { valor: 20.00,  texto: "R$ 20",  img: "../assets/nota20.jpeg",  tipo: "nota" },
+            { valor: 10.00,  texto: "R$ 10",  img: "../assets/nota10.jpeg",  tipo: "nota" },
+            { valor: 5.00,   texto: "R$ 5",   img: "../assets/nota5.jpeg",   tipo: "nota" },
+            { valor: 2.00,   texto: "R$ 2",   img: "../assets/nota2.jpeg",   tipo: "nota" },
+            { valor: 1.00,   texto: "R$ 1",   img: "../assets/moeda1.png",   tipo: "moeda" },
+            { valor: 0.50,   texto: "R$ 0,50", img: "../assets/moeda50.png", tipo: "moeda" },
+            { valor: 0.25,   texto: "R$ 0,25", img: "../assets/moeda25.png", tipo: "moeda" },
+            { valor: 0.10,   texto: "R$ 0,10", img: "../assets/moeda10.png", tipo: "moeda" },
+            { valor: 0.05,   texto: "R$ 0,05", img: "../assets/moeda5.png",  tipo: "moeda" }
         ];
 
         function carregarResumo() {
@@ -130,10 +129,12 @@
             const gridMoedas = document.getElementById('grid-moedas');
             let total = 0;
 
+            gridNotas.innerHTML = ''; 
+            gridMoedas.innerHTML = '';
+
             itens.forEach(item => {
                 const qtd = parseInt(dados[item.valor]) || 0;
-                const valorNum = parseFloat(item.valor.replace(',', '.'));
-                total += (valorNum * qtd);
+                total += (item.valor * qtd);
 
                 const card = `
                     <div class="card-revisao ${item.tipo}">
@@ -147,20 +148,20 @@
                 else gridMoedas.innerHTML += card;
             });
 
-            document.getElementById('total-final').innerText = `R$ ${total.toLocaleString('pt-BR', {minimumFractionDigits: 2})}`;
+            document.getElementById('total-final').innerText = total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
         }
 
         function realizarSangria() {
-        // Esse comando força o navegador a abrir a nova tela que você criou
             window.location.href = 'sangria.html';
         }
 
         function confirmarContagem() {
-            alert("Contagem finalizada!");
-            localStorage.clear();
-            window.location.href = 'caixa.html';
+            if (confirm("Deseja confirmar os valores e finalizar a contagem?")) {
+                window.location.href = 'fechamento_concluido.html';
+            }
         }
 
+        // Usando o nome da função que você tem no seu arquivo
         window.onload = carregarResumo;
     </script>
 </body>

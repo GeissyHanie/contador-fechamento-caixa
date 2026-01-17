@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova Senha | Doces e Mimos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="trocar_senha.css">
+</head>
+<body class="troca-body">
+
+    <nav class="navbar-topo">
+        <div class="nav-brand">🏩 Doces e Mimos</div>
+    </nav>
+
+    <main class="container-central">
+        <div class="card-troca">
+            <div class="avatar-header">
+                <div class="avatar-circulo">
+                    <img src="../assets/LILI_PNG2.png" alt="Mascote" class="img-mascote">
+                </div>
+                <div class="badge-chave">🔑</div>
+            </div>
+
+            <h1 class="titulo-pink">Quase lá!</h1>
+            <p class="subtitulo">Crie um novo <span class="destaque-azul">segredo doce</span> para proteger sua conta.</p>
+
+            <form id="form-nova-senha">
+                <div class="input-container">
+                    <label>Nova Senha</label>
+                    <div class="campo-icon">
+                        <span class="icon-rosa">🍪</span>
+                        <input type="password" placeholder="Digite sua nova senha" required>
+                    </div>
+                </div>
+
+                <div class="input-container">
+                    <label>Confirmar Nova Senha</label>
+                    <div class="campo-icon">
+                        <span class="icon-rosa">🔒</span>
+                        <input type="password" placeholder="Repita a nova senha" required>
+                    </div>
+                </div>
+
+                <div class="password-strength">
+                    <div class="bar active"></div>
+                    <div class="bar active"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+
+                <button type="submit" class="btn-salvar-senha">
+                    💾 Salvar Nova Senha
+                </button>
+            </form>
+
+            <button class="btn-link-voltar" onclick="window.location.href='login.html'">
+                ‹ Voltar ao início
+            </button>
+        </div>
+    </main>
+
+    <footer class="rodape-simples">
+        <div class="icones-rodape">🎂 🍦 🧁</div>
+        <p>Sistema Doces e Mimos • Redefinição Segura</p>
+    </footer>
+<script>
+    document.getElementById('form-nova-senha').addEventListener('submit', function(e) {
+        e.preventDefault(); // Impede a página de recarregar
+
+        // Captura os valores dos campos
+        const campos = e.target.querySelectorAll('input[type="password"]');
+        const novaSenha = campos[0].value;
+        const confirmaSenha = campos[1].value;
+
+        // 1. Verificação de erro: Senhas diferentes
+        if (novaSenha !== confirmaSenha) {
+            alert("❌ Opa! As senhas não são iguais. Verifique e tente novamente.");
+            return; // Interrompe o processo aqui
+        }
+
+        // 2. Verificação de erro: Senha muito curta
+        if (novaSenha.length < 6) {
+            alert("⚠️ Sua senha precisa ser um pouco mais longa (pelo menos 6 caracteres).");
+            return;
+        }
+
+        // 3. Sucesso: Se passar por todas as validações
+        const botao = e.target.querySelector('.btn-salvar-senha');
+        botao.innerText = "Salvando doçura... ✨";
+        botao.style.opacity = "0.7";
+
+        setTimeout(() => {
+            alert("✅ Senha alterada com sucesso! Agora você já pode entrar na sua conta.");
+            window.location.href = 'login.html'; // Redireciona para o login
+        }, 1500);
+    });
+</script>
+</body>
+</html>

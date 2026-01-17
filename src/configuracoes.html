@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurações | SugarRush</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="configuracoes.css">
+</head>
+<body>
+
+    <header class="navbar-config">
+        <div class="logo-area">
+            <span class="logo-icon">🧁</span>
+            <span class="logo-text">Doces e Mimos</span>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Buscar configurações...">
+        </div>
+        <nav class="nav-links">
+            <a href="dashboard.html">Painel</a>
+            <a href="#">Ponto</a>
+            <a href="#">Manuais</a>
+        </nav>
+        <div class="user-actions">
+            <span class="notif">🔔</span>
+            <img src="mascote_admin.png" class="mini-avatar">
+        </div>
+    </header>
+
+    <main class="config-container">
+        <aside class="config-sidebar">
+            <div class="sidebar-header">
+                <div class="icon-box">⚙️</div>
+                <div>
+                    <h3>Configurações</h3>
+                    <p>Gerenciar preferências</p>
+                </div>
+            </div>
+
+            <nav class="sidebar-menu">
+                <a href="#" class="active"><span>🎨</span> Aparência</a>
+                <a href="#"><span>🔊</span> Sons e Efeitos</a>
+                <a href="#"><span>🔔</span> Notificações</a>
+                <a href="#"><span>💵</span> Controle de Caixa</a>
+                <a href="#"><span>🕒</span> Relógio de Ponto</a>
+                <a href="#"><span>📖</span> Manuais</a>
+                <a href="#"><span>🛡️</span> Segurança</a>
+            </nav>
+
+            <div class="premium-card">
+                <h4>Plano Doce Premium</h4>
+                <p>Desbloqueie alertas de estoque ilimitados e temas exclusivos.</p>
+                <button class="btn-melhorar">Melhorar Agora</button>
+            </div>
+        </aside>
+
+        <section class="config-content">
+            <div class="content-header">
+                <h1>APARÊNCIA</h1>
+                <p>Personalize sua experiência na Doceria</p>
+                <button class="btn-restore">Restaurar Padrão</button>
+            </div>
+
+            <div class="config-card">
+                <div class="card-info">
+                    <span class="icon-circle">🌙</span>
+                    <div>
+                        <h4>Modo Chocolate Amargo</h4>
+                        <p>Alterne entre o Modo Doce e um tema rico e escuro</p>
+                    </div>
+                </div>
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <div class="config-card-vertical">
+                <h4>Sabores da Interface</h4>
+                <p>Escolha sua cor de destaque principal</p>
+                <div class="color-options">
+                    <span class="color-dot active" style="background: #ff3366;"></span>
+                    <span class="color-dot" style="background: #6ab0ff;"></span>
+                    <span class="color-dot" style="background: #b98eff;"></span>
+                    <span class="color-dot" style="background: #3ee09a;"></span>
+                    <span class="color-dot" style="background: #ff9f43;"></span>
+                    <span class="color-dot" style="background: #feca57;"></span>
+                </div>
+            </div>
+
+            <div class="row-group">
+                <div class="config-card half">
+                    <div class="card-info">
+                        <span class="icon-pink">🎵</span>
+                        <div>
+                            <h4>Sons de Docinhos</h4>
+                            <p>Volume: 80%</p>
+                        </div>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="config-card half">
+                    <div class="card-info">
+                        <span class="icon-pink">📢</span>
+                        <h4>Sons do Caixa</h4>
+                    </div>
+                    <button class="btn-test">Testar Som</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="save-bar">
+        <p>Você tem alterações não salvas em <span>Aparência</span></p>
+        <div class="save-actions">
+            <button class="btn-discard">Descartar</button>
+            <button class="btn-save">Salvar Alterações</button>
+        </div>
+    </div>
+
+</body>
+</html>

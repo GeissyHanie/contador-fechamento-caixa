@@ -1,0 +1,83 @@
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+.troca-body {
+    /* Fundo pontilhado rosa idêntico ao fechamento */
+    background-color: #fdf2f7;
+    background-image: radial-gradient(#f9cedf 1.5px, transparent 1.5px);
+    background-size: 20px 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* NAVBAR */
+.navbar-topo { padding: 20px 60px; display: flex; justify-content: space-between; align-items: center; }
+.nav-brand { font-weight: 700; color: #333; font-size: 18px; }
+.nav-actions { display: flex; gap: 10px; }
+.btn-circular {
+    width: 35px; height: 35px; border-radius: 50%; border: none;
+    background: #fff0f6; color: #f45095; cursor: pointer; font-weight: bold;
+}
+
+/* CARD */
+.container-central { flex: 1; display: flex; justify-content: center; align-items: center; padding: 20px; }
+
+.card-troca {
+    background: white; width: 100%; max-width: 480px;
+    border-radius: 50px; padding: 40px; text-align: center;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.05);
+}
+
+/* AVATAR */
+.avatar-header { position: relative; width: 140px; height: 140px; margin: 0 auto 25px; }
+.avatar-circulo {
+    width: 100%; height: 100%; border-radius: 50%; background: #f9cedf;
+    border: 4px solid white; overflow: hidden; box-shadow: 0 8px 15px rgba(244, 80, 149, 0.2);
+}
+.img-mascote { width: 100%; height: 100%; object-fit: cover; }
+.badge-chave {
+    position: absolute; bottom: 5px; right: 5px;
+    background: #f45095; width: 32px; height: 32px;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 14px; border: 3px solid white;
+}
+
+/* TEXTOS */
+.titulo-pink { color: #f45095; font-size: 24px; margin-bottom: 10px; }
+.subtitulo { color: #777; font-size: 14px; margin-bottom: 30px; }
+.destaque-azul { color: #00ccff; font-weight: 700; }
+
+/* FORMULÁRIO */
+.input-container { text-align: left; margin-bottom: 20px; }
+.input-container label { font-size: 12px; font-weight: 700; color: #444; margin-left: 5px; }
+.campo-icon {
+    display: flex; align-items: center; background: #fff9fb;
+    border: 1.5px solid #f9ebf2; border-radius: 20px; padding: 0 15px;
+}
+.campo-icon input {
+    width: 100%; padding: 15px 10px; border: none; background: none;
+    outline: none; font-size: 14px; color: #555;
+}
+.icon-rosa { font-size: 18px; filter: grayscale(100%) sepia(100%) hue-rotate(300deg) saturate(500%); }
+
+/* BARRA DE FORÇA */
+.password-strength { display: flex; gap: 5px; margin: 15px 0 25px; }
+.bar { flex: 1; height: 4px; background: #eee; border-radius: 2px; }
+.bar.active { background: #f9cedf; }
+
+/* BOTÃO */
+.btn-salvar-senha {
+    width: 100%; background: #00ccff; color: white; border: none;
+    padding: 16px; border-radius: 20px; font-weight: 700; cursor: pointer;
+    box-shadow: 0 8px 15px rgba(0, 204, 255, 0.3); transition: 0.3s;
+}
+.btn-salvar-senha:hover { transform: translateY(-2px); }
+
+.btn-link-voltar {
+    background: none; border: none; color: #999;
+    font-size: 13px; font-weight: 600; cursor: pointer; margin-top: 20px;
+}
+
+/* RODAPÉ */
+.rodape-simples { padding: 30px; text-align: center; color: #bbb; font-size: 10px; }
+.icones-rodape { margin-bottom: 5px; opacity: 0.5; }

@@ -1,0 +1,215 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.perfil-body {
+    background-color: #fff;
+    /* Fundo pontilhado mais sutil e rosado */
+    background-image: radial-gradient(#f9cedf 1.5px, transparent 1.5px);
+    background-size: 24px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 60px 20px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.perfil-container {
+    background: #ffffff;
+    width: 100%;
+    max-width: 580px;
+    border-radius: 50px; /* Bordas bem arredondadas como na imagem */
+    padding: 50px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.04);
+    position: relative;
+}
+
+.btn-voltar-perfil {
+    text-decoration: none;
+    color: #ff2d6c; /* Tom de rosa da Sugar Joy */
+    font-weight: 600;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.perfil-header {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.avatar-wrapper {
+    position: relative;
+    width: 160px;
+    margin: 0 auto 20px;
+}
+
+.avatar-circle {
+    width: 160px;
+    height: 160px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.avatar-img {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    object-fit: contain;
+}
+
+.btn-camera {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: #ff2d6c;
+    border: 4px solid #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.perfil-header h1 { 
+    font-size: 32px; 
+    font-weight: 700; 
+    color: #2d3436; 
+}
+
+.badge-cargo {
+    background: #fff0f6;
+    color: #ff2d6c;
+    padding: 6px 20px;
+    border-radius: 30px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    display: inline-block;
+    margin-top: 5px;
+}
+
+.section-title {
+    font-size: 13px;
+    color: #ff2d6c;
+    letter-spacing: 1.5px;
+    margin-bottom: 25px;
+    font-weight: 700;
+}
+
+.input-group { margin-bottom: 22px; }
+
+.input-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.input-readonly {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-readonly input {
+    width: 100%;
+    padding: 18px 20px;
+    border-radius: 20px; /* Bordas dos campos como na imagem */
+    border: 1.5px solid #f1f1f1;
+    background: #fafafa;
+    color: #636e72;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+}
+
+.icon-right {
+    position: absolute;
+    right: 20px;
+    color: #b2bec3;
+    font-size: 14px;
+}
+
+.info-alert {
+    background: #fff4f8;
+    padding: 15px 20px;
+    border-radius: 20px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin: 30px 0;
+}
+
+.info-icon {
+    background: #ff2d6c;
+    color: white;
+    min-width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.info-alert p { 
+    font-size: 11.5px; 
+    color: #ff2d6c; 
+    font-weight: 500; 
+    line-height: 1.4;
+}
+
+.perfil-actions { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 12px; 
+}
+
+.btn-primary-pink {
+    background: #ff2d6c;
+    color: white;
+    border: none;
+    padding: 20px;
+    border-radius: 22px;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(255, 45, 108, 0.2);
+    transition: 0.3s;
+}
+
+.btn-secondary-white {
+    background: white;
+    color: #2d3436;
+    border: 1.5px solid #f1f1f1;
+    padding: 20px;
+    border-radius: 22px;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.footer-perfil {
+    text-align: center;
+    margin-top: 50px;
+    color: #b2bec3;
+}
+
+.footer-icons { font-size: 28px; margin-bottom: 12px; opacity: 0.6; }
+.footer-perfil p { font-size: 10px; letter-spacing: 3px; font-weight: 600; }

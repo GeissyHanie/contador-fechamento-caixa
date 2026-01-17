@@ -114,16 +114,31 @@
 /* BOTÕES */
 .botoes-acao { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
 
-.btn-relatorio {
-    background: white;
-    border: 2px solid #eee;
-    padding: 15px;
+.btn-relatorio-branco {
+    background-color: #ffffff;
+    color: #f45095;
+    border: 1.5px solid #f9ebf2;
+    padding: 15px 30px;
     border-radius: 20px;
     font-weight: 700;
-    color: #444;
     cursor: pointer;
+    
+    /* Propriedades de Centralização */
+    display: flex;           /* Ativa o modo flexível */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center;     /* Centraliza verticalmente */
+    text-align: center;      /* Garante que o texto interno alinhe */
+    
+    gap: 10px;               /* Espaço entre o ícone 📄 e o texto */
+    width: 100%;             /* Faz o botão ocupar a largura do card */
+    max-width: 250px;        /* Define um tamanho limite para não ficar gigante */
+    margin: 0 auto;          /* Centraliza o botão inteiro dentro da caixa branca */
+    transition: 0.3s;
 }
-
+.btn-relatorio-branco:hover {
+    background-color: #fff9fb;
+    transform: translateY(-2px);
+}
 .btn-inicio {
     background: #f45095;
     border: none;

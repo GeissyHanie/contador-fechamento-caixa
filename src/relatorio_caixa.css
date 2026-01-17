@@ -1,0 +1,54 @@
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+body { background: #f8f9fc; color: #333; }
+
+/* NAVBAR IGUAL IMAGEM 1 */
+.navbar { background: white; padding: 15px 0; border-bottom: 1px solid #edf2f7; }
+.nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+.brand { font-weight: 700; font-size: 18px; }
+.menu-central span { margin: 0 15px; font-size: 13px; color: #718096; cursor: pointer; }
+.menu-central .active { color: #f45095; font-weight: 700; border-bottom: 2px solid #f45095; padding-bottom: 18px; }
+.btn-pdf { background: #f45095; color: white; border: none; padding: 8px 16px; border-radius: 8px; font-weight: 600; cursor: pointer; }
+.btn-print { background: #fff0f6; color: #f45095; border: none; padding: 8px 16px; border-radius: 8px; margin-left: 10px; cursor: pointer; }
+
+/* LAYOUT */
+.main-container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+.header-relatorio { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 30px; }
+.tag { color: #f45095; font-size: 11px; font-weight: 700; }
+.header-relatorio h1 { font-size: 32px; margin: 5px 0; }
+.info-turno { background: white; padding: 15px; border-radius: 12px; font-size: 12px; border: 1px solid #edf2f7; }
+
+/* CARDS DE RESUMO */
+.cards-resumo { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 30px; }
+.card-resumo { padding: 25px; border-radius: 16px; background: white; border-bottom: 4px solid transparent; }
+.card-resumo span { font-size: 12px; font-weight: 700; color: #718096; }
+.card-resumo h2 { font-size: 28px; margin: 10px 0; }
+.card-resumo.azul { border-color: #bee3f8; color: #2b6cb0; background: #ebf8ff; }
+.card-resumo.rosa { border-color: #fed7e2; color: #97266d; background: #fff5f7; }
+.card-resumo.verde { border-color: #c6f6d5; color: #276749; background: #f0fff4; }
+
+/* GRIDS E PAINÉIS */
+.grid-conteudo { display: grid; grid-template-columns: 1.2fr 1fr; gap: 30px; }
+.painel-branco { background: white; padding: 25px; border-radius: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+.painel-branco h3 { font-size: 16px; margin-bottom: 20px; color: #2d3748; }
+
+/* TABELA IGUAL IMAGEM 1 */
+.tabela-contagem { width: 100%; border-collapse: collapse; }
+.tabela-contagem th { text-align: left; font-size: 10px; color: #a0aec0; padding: 10px; border-bottom: 1px solid #edf2f7; }
+.tabela-contagem td { padding: 12px 10px; font-size: 14px; font-weight: 600; border-bottom: 1px solid #f7fafc; }
+.total-destaque { color: #2b6cb0; background: #ebf8ff; }
+.total-destaque td { font-size: 18px; padding: 20px 10px; }
+
+/* SANGRIAS */
+.item-sangria { display: flex; justify-content: space-between; padding: 15px; border: 1px solid #fed7e2; border-radius: 12px; margin-bottom: 10px; }
+.item-sangria span { font-size: 10px; color: #a0aec0; display: block; }
+.valor-sangria { color: #f45095; font-weight: 700; }
+
+/* ÁREA DA GERÊNCIA ABAIXO E LARGA */
+.validacao { margin-top: 20px; border: 2px solid #f9cedf; }
+.check-box { display: flex; align-items: center; gap: 10px; font-size: 14px; margin-bottom: 20px; cursor: pointer; }
+.campo-obs { margin-bottom: 15px; display: flex; flex-direction: column; }
+.campo-obs label { font-size: 13px; font-weight: 600; margin-bottom: 8px; }
+.campo-obs textarea { width: 100%; min-height: 100px; border-radius: 12px; border: 1px solid #edf2f7; padding: 12px; outline: none; resize: vertical; }
+.campo-obs select { padding: 12px; border-radius: 12px; border: 1px solid #edf2f7; }
+.btn-finalizar { width: 100%; background: #48bb78; color: white; border: none; padding: 15px; border-radius: 12px; font-weight: 700; cursor: pointer; margin-top: 10px; }
