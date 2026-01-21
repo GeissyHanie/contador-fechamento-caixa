@@ -128,29 +128,50 @@
         </nav>
 
         <div class="rodape-acoes">
-            <button type="button" class="btn-sair-sistema" onclick="location.href='login.html'">
+            <button type="button" class="btn-sair-sistema" onclick="sairDoSistema()">
                 <span>📤</span> Sair do Sistema
             </button>
         </div>
     </div>
 
     <script>
-        function togglePainel() {
-            const painel = document.getElementById('painel-lateral');
-            const overlay = document.getElementById('overlay-painel');
-            painel.classList.toggle('aberto');
-            overlay.classList.toggle('ativo');
+    function togglePainel() {
+        const painel = document.getElementById('painel-lateral');
+        const overlay = document.getElementById('overlay-painel');
+        painel.classList.toggle('aberto');
+        overlay.classList.toggle('ativo');
+    }
+
+    // Função para fazer Logout com segurança
+    function sairDoSistema() {
+        localStorage.clear(); // Limpa Token e Nome
+        window.location.href = 'login.html';
+    }
+
+    window.onload = function() {
+        // 1. Verificar se o usuário está logado
+        const token = localStorage.getItem('token');
+        const nomeLogado = localStorage.getItem('usuarioLogado');
+
+        if (!token) {
+            // Se não tem token, bloqueia o acesso e volta pro login
+            alert("Acesso restrito. Por favor, faça login.");
+            window.location.href = 'login.html';
+            return;
         }
 
-        window.onload = function() {
-            const nomeCompleto = localStorage.getItem('nomeCompleto');
+        // 2. Aplicar o nome real vindo do banco de dados nos elementos do HTML
+        if (nomeLogado) {
+            // Nome na barra superior
+            document.getElementById('nome-topo').innerText = nomeLogado;
             
-            if (nomeCompleto) {
-                document.getElementById('nome-topo').innerText = nomeCompleto;
-                document.getElementById('nome-lateral').innerText = "Olá, " + nomeCompleto + "!";
-                document.getElementById('avatar-letra').innerText = nomeCompleto.charAt(0).toUpperCase();
-            }
-        };
-    </script>
+            // Nome no painel lateral
+            document.getElementById('nome-lateral').innerText = "Olá, " + nomeLogado + "!";
+            
+            // Letra inicial no Avatar
+            document.getElementById('avatar-letra').innerText = nomeLogado.charAt(0).toUpperCase();
+        }
+    };
+</script>
 </body>
 </html>
