@@ -14,11 +14,9 @@
             <div class="brand">🏩 Doces e Mimos</div>
             <div class="menu-central">
                 <span onclick="window.location.href='dashboard.html'" style="cursor: pointer;">Dashboard</span>
-    
                 <span class="active">Relatórios</span>
-    
                 <span onclick="window.location.href='caixa.html'" style="cursor: pointer;">Caixa</span>
-        </div>
+            </div>
             <div class="nav-btns">
                 <button class="btn-pdf" onclick="gerarPDF()">📄 Exportar PDF</button>
                 <button class="btn-print" onclick="window.print()">🖨️ Imprimir</button>
@@ -34,27 +32,27 @@
                 <p>Confira os valores e movimentações do turno para validação da gerência.</p>
             </div>
             <div class="info-turno">
-                <p><strong>DATA E HORA:</strong> 24/05/2024 - 18:30</p>
-                <p><strong>OPERADOR:</strong> 📍 Maria Oliveira</p>
-                <p><strong>ID TURNO:</strong> #TRN-99283</p>
+                <p><strong>DATA E HORA:</strong> <span id="rel-data-hora">--/--/---- - --:--</span></p>
+                <p><strong>OPERADOR:</strong> 📍 <span id="rel-operador">Nome do Usuário</span></p>
+                <p><strong>ID TURNO:</strong> <span id="rel-id-turno">#TRN-00000</span></p>
             </div>
         </header>
 
         <section class="cards-resumo">
             <div class="card-resumo azul">
                 <span>SALDO INICIAL</span>
-                <h2>R$ 200,00</h2>
+                <h2 id="resumo-inicial">R$ 200,00</h2>
                 <p>✓ Fundo de troco padrão</p>
             </div>
             <div class="card-resumo rosa">
                 <span>TOTAL SANGRIAS</span>
-                <h2>R$ 50,00</h2>
+                <h2 id="resumo-sangria">R$ 0,00</h2>
                 <p>↓ Retiradas do caixa</p>
             </div>
             <div class="card-resumo verde">
-                <span>SALDO FINAL</span>
-                <h2>R$ 1.450,00</h2>
-                <p>📈 Líquido: R$ 1.250,00</p>
+                <span>TOTAL CONTADO</span>
+                <h2 id="resumo-final">R$ 0,00</h2>
+                <p id="resumo-liquido">📈 Líquido: R$ 0,00</p>
             </div>
         </section>
 
@@ -65,23 +63,12 @@
                     <thead>
                         <tr><th>DENOMINAÇÃO</th><th>QTD.</th><th>SUBTOTAL</th></tr>
                     </thead>
-                    <tbody>
-                        <tr><td>💵 Notas R$ 100</td><td>10</td><td>R$ 1.000,00</td></tr>
-                        <tr><td>💵 Notas R$ 50</td><td>4</td><td>R$ 200,00</td></tr>
-                        <tr><td>💵 Notas R$ 20</td><td>10</td><td>R$ 200,00</td></tr>
-                        <tr><td>💵 Notas R$ 10</td><td>0</td><td>R$ 0,00</td></tr>
-                        <tr><td>💵 Notas R$ 5</td><td>0</td><td>R$ 0,00</td></tr>
-                        <tr><td>💵 Notas R$ 2</td><td>0</td><td>R$ 0,00</td></tr>
-                        <tr><td>🍊 Moedas R$ 1,00</td><td>40</td><td>R$ 40,00</td></tr>
-                        <tr><td>🍊 Moedas R$ 0,50</td><td>20</td><td>R$ 10,00</td></tr>
-                        <tr><td>🍊 Moedas R$ 0,25</td><td>0</td><td>R$ 0,00</td></tr>
-                        <tr><td>🍊 Moedas R$ 0,10</td><td>0</td><td>R$ 0,00</td></tr>
-                        <tr><td>🍊 Moedas R$ 0,05</td><td>0</td><td>R$ 0,00</td></tr>
+                    <tbody id="tabela-corpo">
                     </tbody>
                     <tfoot>
                         <tr class="total-destaque">
                             <td colspan="2">TOTAL CONTADO</td>
-                            <td>R$ 1.450,00</td>
+                            <td id="total-contado-tabela">R$ 0,00</td>
                         </tr>
                     </tfoot>
                 </table>
@@ -90,13 +77,8 @@
             <div class="coluna-apoio">
                 <section class="painel-branco">
                     <h3 class="titulo-sangria">💸 Sangrias (Retiradas)</h3>
-                    <div class="item-sangria">
-                        <div><strong>Compra de leite condensado</strong><span>14:20 • Maria</span></div>
-                        <span class="valor-sangria">- R$ 35,00</span>
-                    </div>
-                    <div class="item-sangria">
-                        <div><strong>Pagamento Frete Loggi</strong><span>11:05 • Maria</span></div>
-                        <span class="valor-sangria">- R$ 15,00</span>
+                    <div id="lista-sangrias">
+                        <p style="color: #666; font-style: italic;">Nenhuma sangria registrada neste turno.</p>
                     </div>
                 </section>
 
@@ -107,8 +89,8 @@
                         O valor físico confere com o sistema?
                     </label>
                     <div class="campo-obs">
-                        <label>Observação da Gerência (Caso haja erro ou falta):</label>
-                        <textarea id="obs-gerencia" placeholder="Digite aqui os detalhes da conferência..."></textarea>
+                        <label>Observação da Gerência:</label>
+                        <textarea id="obs-gerencia" placeholder="Digite aqui os detalhes..."></textarea>
                     </div>
                     <div class="campo-obs">
                         <label>Responsável:</label>
@@ -118,6 +100,10 @@
                             <option value="Gezilene">Gezilene</option>
                         </select>
                     </div>
+                    <div id="assinatura-impressao" style="margin-top: 20px; border-top: 1px dashed #ccc; padding-top: 15px;">
+                        <p style="font-size: 14px; margin-bottom: 5px;"><strong>RELATÓRIO DE FECHAMENTO CONFERIDO</strong></p>
+                        <p id="texto-validacao-pdf" style="font-size: 16px; color: #333;">Aguardando validação...</p>
+                    </div>
                     <button class="btn-finalizar" onclick="validarEEncerrar()">Validar e Encerrar Turno</button>
                 </section>
             </div>
@@ -125,24 +111,116 @@
     </main>
 
     <script>
-        function validarEEncerrar() {
-    const responsavel = document.getElementById('quem-validou').value;
-    
-    if (!responsavel) {
-        alert("⚠️ Selecione o responsável pela conferência.");
-        return;
-    }
+    window.onload = function() {
+        try {
+            // 1. Recuperar dados
+            const dados = JSON.parse(localStorage.getItem('dadosContagem')) || {};
+            const usuario = localStorage.getItem('usuarioLogado') || "Não identificado";
+            const SALDO_INICIAL = 200.00;
 
-    if (confirm("Deseja confirmar a validação e finalizar o expediente?")) {
-        // Redireciona para a nova tela de sucesso que criamos agora
-        window.location.href = 'validacao_relatorio.html';
-    }
+            // 2. Tratar Sangria
+            const sangriaTexto = localStorage.getItem('totalUltimaSangria') || "R$ 0,00";
+            const valorSangriaNum = parseFloat(sangriaTexto.replace(/[R$\s.]/g, '').replace(',', '.')) || 0;
+
+            // 3. Atualizar Cabeçalho
+            const agora = new Date();
+            const elData = document.getElementById('rel-data-hora');
+            const elOperador = document.getElementById('rel-operador');
+            const elIdTurno = document.getElementById('rel-id-turno');
+
+            if(elData) elData.innerText = agora.toLocaleDateString('pt-BR') + " - " + agora.toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'});
+            if(elOperador) elOperador.innerText = usuario;
+            if(elIdTurno) elIdTurno.innerText = "#TRN-" + Math.floor(10000 + Math.random() * 90000);
+
+            // 4. Tabela de Contagem
+            const corpoTabela = document.getElementById('tabela-corpo');
+            let totalNotasMoedas = 0; // Soma bruta de todas as notas e moedas contadas
+            
+            const denominacoes = [
+                { label: "💵 Notas R$ 200", valor: 200 }, { label: "💵 Notas R$ 100", valor: 100 },
+                { label: "💵 Notas R$ 50", valor: 50 }, { label: "💵 Notas R$ 20", valor: 20 },
+                { label: "💵 Notas R$ 10", valor: 10 }, { label: "💵 Notas R$ 5", valor: 5 },
+                { label: "💵 Notas R$ 2", valor: 2 }, { label: "🍊 Moedas R$ 1,00", valor: 1 },
+                { label: "🍊 Moedas R$ 0,50", valor: 0.5 }, { label: "🍊 Moedas R$ 0,25", valor: 0.25 },
+                { label: "🍊 Moedas R$ 0,10", valor: 0.1 }, { label: "🍊 Moedas R$ 0,05", valor: 0.05 }
+            ];
+
+            if (corpoTabela) {
+                corpoTabela.innerHTML = ""; 
+                denominacoes.forEach(item => {
+                    const qtd = dados[item.valor.toString()] || 0;
+                    const subtotal = item.valor * qtd;
+                    totalNotasMoedas += subtotal;
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `<td>${item.label}</td><td>${qtd}</td><td>${subtotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</td>`;
+                    corpoTabela.appendChild(tr);
+                });
+            }
+
+            // 5. Atualizar Valores Financeiros
+            const formatar = (v) => v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            
+            // CÁLCULO SOLICITADO: Total Contado agora é Notas - Sangria
+            const totalContadoComDesconto = totalNotasMoedas - valorSangriaNum;
+
+            const elResSangria = document.getElementById('resumo-sangria');
+            const elResFinal = document.getElementById('resumo-final');
+            const elTotalTab = document.getElementById('total-contado-tabela');
+            const elResLiq = document.getElementById('resumo-liquido');
+
+            if(elResSangria) elResSangria.innerText = formatar(valorSangriaNum);
+            
+            // O card Verde agora mostra o valor descontado
+            if(elResFinal) elResFinal.innerText = formatar(totalContadoComDesconto);
+            
+            // A tabela de contagem lá embaixo ainda mostra o bruto das notas para conferência física
+            if(elTotalTab) elTotalTab.innerText = formatar(totalNotasMoedas);
+
+            // Cálculo do Líquido Real (Soma das Notas - Fundo Inicial - Sangria)
+            const liquido = totalNotasMoedas - SALDO_INICIAL - valorSangriaNum;
+            if(elResLiq) elResLiq.innerText = "📈 Líquido: " + formatar(liquido);
+
+            // 6. Lista Lateral (Sangrias)
+const listaS = document.getElementById('lista-sangrias');
+
+// Buscamos a observação exata que salvamos na tela anterior
+const obsSalva = localStorage.getItem('obsUltimaSangria');
+
+if (listaS && valorSangriaNum > 0) {
+    listaS.innerHTML = `
+        <div style="background: #fff5f8; border-radius: 8px; border-left: 4px solid #ff33cc; padding: 12px; margin-bottom: 10px;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                <span style="font-weight: 600; color: #333;">Retirada Efetuada</span>
+                <strong style="color: #e91e63;">- ${formatar(valorSangriaNum)}</strong>
+            </div>
+            <div style="font-size: 13px; color: #666; border-top: 1px solid #ffe0f0; padding-top: 8px; margin-top: 8px; line-height: 1.4;">
+                <strong>Motivo/Obs:</strong><br>
+                ${obsSalva ? obsSalva : "Nenhuma observação detalhada."}
+            </div>
+        </div>`;
+} else if (listaS) {
+    listaS.innerHTML = '<p style="color: #666; font-style: italic;">Nenhuma sangria registrada neste turno.</p>';
 }
 
-function gerarPDF() {
-    // Abre a janela de impressão do sistema, que permite "Salvar como PDF"
-    window.print();
-}
-    </script>
+            // 7. Evento do Select
+            const selectResp = document.getElementById('quem-validou');
+            const txtVal = document.getElementById('texto-validacao-pdf');
+            if (selectResp && txtVal) {
+                selectResp.addEventListener('change', function() {
+                    txtVal.innerHTML = this.value ? `Validado por: <strong>${this.value}</strong> em ${new Date().toLocaleDateString('pt-BR')}` : "Aguardando validação...";
+                });
+            }
+
+        } catch (e) { console.error("Erro:", e); }
+    };
+
+    function validarEEncerrar() {
+        const resp = document.getElementById('quem-validou').value;
+        if (!resp) return alert("⚠️ Selecione o responsável.");
+        if (confirm("Deseja finalizar o turno?")) window.location.href = 'validacao_relatorio.html';
+    }
+
+    function gerarPDF() { window.print(); }
+</script>
 </body>
 </html>

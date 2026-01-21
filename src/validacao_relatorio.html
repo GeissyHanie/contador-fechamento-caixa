@@ -22,10 +22,10 @@
 
             <h1 class="titulo-sucesso">Relatório Finalizado <br> <span>com Sucesso!</span></h1>
             
-        <p class="legenda">O fechamento foi concluído e as informações foram salvas.</p>
+            <p class="legenda">O fechamento foi concluído e as informações foram salvas.</p>
 
             <div class="acoes-finais">
-                <button class="btn-branco-pdf" onclick="window.print()">
+                <button class="btn-branco-pdf" onclick="baixarRelatorioReal()">
                     <span class="icon-pdf">📄</span> Baixar PDF do Relatório
                 </button>
                 <button class="btn-rosa-inicio" onclick="window.location.href='login.html'">
@@ -38,29 +38,43 @@
             </div>
         </div>
     </div>
-<script>
-    function estourarConfetes() {
-        const cores = ['#f45095', '#ffcc00', '#00ccff', '#ff69b4', '#9370db']; // Cores dos confetes
-        const container = document.body; // Onde os confetes vão aparecer
 
-        for (let i = 0; i < 100; i++) { // Cria 100 confetes
+<script>
+    // Função para imprimir o relatório real (a tela anterior) e não esta tela de sucesso
+    function baixarRelatorioReal() {
+    // 1. Cria um frame (janela) invisível
+    const iframe = document.createElement('iframe');
+    iframe.style.display = 'none'; // Esconde o frame
+    iframe.src = 'relatorio_caixa.html?imprimir=true'; // Carrega o relatório com o comando de imprimir
+    
+    document.body.appendChild(iframe);
+
+    // 2. Remove o frame depois de um tempo para não pesar a página
+    setTimeout(() => {
+        document.body.removeChild(iframe);
+    }, 5000); // 5 segundos é o suficiente para o diálogo de impressão abrir
+}
+
+    function estourarConfetes() {
+        const cores = ['#f45095', '#ffcc00', '#00ccff', '#ff69b4', '#9370db'];
+        const container = document.body;
+
+        for (let i = 0; i < 100; i++) {
             const confete = document.createElement('div');
             confete.classList.add('confete');
             confete.style.backgroundColor = cores[Math.floor(Math.random() * cores.length)];
-            confete.style.left = Math.random() * 100 + 'vw'; // Posição horizontal aleatória
-            confete.style.animationDuration = Math.random() * 2 + 3 + 's'; // Duração aleatória (3 a 5s)
-            confete.style.animationDelay = Math.random() * 0.5 + 's'; // Pequeno delay
+            confete.style.left = Math.random() * 100 + 'vw';
+            confete.style.animationDuration = Math.random() * 2 + 3 + 's';
+            confete.style.animationDelay = Math.random() * 0.5 + 's';
             
             container.appendChild(confete);
             
-            // Remove o confete depois da animação para não sobrecarregar
             confete.addEventListener('animationend', () => {
                 confete.remove();
             });
         }
     }
 
-    // Chama a função de confetes quando a página carregar
     window.onload = estourarConfetes;
 </script>
 </body>

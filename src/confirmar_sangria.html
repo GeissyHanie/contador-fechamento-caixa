@@ -28,19 +28,19 @@
                     <label>Valor da Retirada 01 (R$)</label>
                     <div class="input-with-icon">
                         <span class="currency-prefix">R$</span>
-                        <input type="number" placeholder="0,00" step="0.01">
+                        <input type="number" placeholder="0,00" step="0.01" class="input-valor">
                         <span class="icon-input">💵</span>
                     </div>
                 </div>
 
                 <div class="input-group">
                     <label>Motivo da Sangria 01</label>
-                    <select class="custom-select">
+                    <select class="custom-select" id="motivo-1">
                         <option value="">Selecione o motivo...</option>
-                        <option value="fornecedor">Pagamento de Fornecedor</option>
-                        <option value="despesa">Despesa Extra</option>
-                        <option value="troco">Reposição de Troco</option>
-                        <option value="valor em caixa excedendo limite">Valor em caixa excedendo limite</option>
+                        <option value="Pagamento de Fornecedor">Pagamento de Fornecedor</option>
+                        <option value="Despesa Extra">Despesa Extra</option>
+                        <option value="Reposição de Troco">Reposição de Troco</option>
+                        <option value="Valor excedente">Valor em caixa excedendo limite</option>
                     </select>
                 </div>
 
@@ -50,25 +50,25 @@
                     <label>Valor da Retirada 02 (R$)</label>
                     <div class="input-with-icon">
                         <span class="currency-prefix">R$</span>
-                        <input type="number" placeholder="0,00" step="0.01">
+                        <input type="number" placeholder="0,00" step="0.01" class="input-valor">
                         <span class="icon-input">💵</span>
                     </div>
                 </div>
 
                 <div class="input-group">
                     <label>Motivo da Sangria 02</label>
-                    <select class="custom-select">
+                    <select class="custom-select" id="motivo-2">
                         <option value="">Selecione o motivo...</option>
-                        <option value="fornecedor">Pagamento de Fornecedor</option>
-                        <option value="despesa">Despesa Extra</option>
-                        <option value="troco">Reposição de Troco</option>
-                        <option value="valor em caixa excedendo limite">Valor em caixa excedendo limite</option>
+                        <option value="Pagamento de Fornecedor">Pagamento de Fornecedor</option>
+                        <option value="Despesa Extra">Despesa Extra</option>
+                        <option value="Reposição de Troco">Reposição de Troco</option>
+                        <option value="Valor excedente">Valor em caixa excedendo limite</option>
                     </select>
                 </div>
 
                 <div class="input-group">
                     <label>Observação (Opcional)</label>
-                    <textarea placeholder="Detalhes adicionais sobre a retirada..." rows="3"></textarea>
+                    <textarea id="obs-texto" placeholder="Detalhes adicionais sobre a retirada..." rows="3"></textarea>
                 </div>
 
                 <div class="actions-form">
@@ -85,7 +85,7 @@
             </div>
             <div class="stat-box retirado-box">
                 <small>TOTAL RETIRADO</small>
-                <strong class="text-pink">- R$ 320,00</strong>
+                <strong class="text-pink">- R$ 0,00</strong>
             </div>
         </footer>
     </main>
@@ -93,11 +93,11 @@
     <p class="copyright">© 2024 Doces e Mimos System<br>📖 Manual · 🎧 Suporte</p>
 
     <script>
-    const inputsValor = document.querySelectorAll('input[type="number"]');
+    const inputsValor = document.querySelectorAll('.input-valor');
     const totalDisplay = document.querySelector('.retirado-box strong');
     const form = document.getElementById('form-sangria');
 
-    // Função para somar os valores enquanto digita
+    // 1. Função que soma os valores em tempo real
     function atualizarTotalFinal() {
         let soma = 0;
         inputsValor.forEach(input => {
@@ -105,20 +105,38 @@
         });
         const totalFormatado = `R$ ${soma.toLocaleString('pt-BR', {minimumFractionDigits: 2})}`;
         totalDisplay.innerText = `- ${totalFormatado}`;
-        
-        // Salva temporariamente para a próxima tela
-        localStorage.setItem('totalUltimaSangria', totalFormatado);
     }
 
     inputsValor.forEach(input => {
         input.addEventListener('input', atualizarTotalFinal);
     });
 
-    // Ao clicar em Confirmar, vai para a tela de sucesso
+    // 2. Função que SALVA TUDO e vai para a próxima tela
     form.addEventListener('submit', function(e) {
-        e.preventDefault(); // Impede o recarregamento da página
+        e.preventDefault(); 
+
+        // Pega o valor total que está aparecendo na tela
+        const valorTotalSalvar = totalDisplay.innerText.replace('- ', '');
+
+        // Pega os textos dos motivos e observação
+        const mot1 = document.getElementById('motivo-1').value;
+        const mot2 = document.getElementById('motivo-2').value;
+        const obs = document.getElementById('obs-texto').value;
+
+        // Monta uma frase organizada para o relatório
+        let textoRelatorio = "";
+        if(mot1) textoRelatorio += "Motivo 1: " + mot1 + ". ";
+        if(mot2) textoRelatorio += "Motivo 2: " + mot2 + ". ";
+        if(obs)  textoRelatorio += "Obs: " + obs;
+        if(!mot1 && !mot2 && !obs) textoRelatorio = "Nenhuma observação informada.";
+
+        // SALVA NA GAVETA (LocalStorage)
+        localStorage.setItem('totalUltimaSangria', valorTotalSalvar);
+        localStorage.setItem('obsUltimaSangria', textoRelatorio);
+
+        // VAI PARA A TELA DE SUCESSO
         window.location.href = 'sucesso_sangria.html';
     });
-</script>
+    </script>
 </body>
 </html>

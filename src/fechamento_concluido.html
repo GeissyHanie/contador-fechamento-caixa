@@ -61,53 +61,63 @@
     </div>
 
     <script>
-        function voltarAoInicio() {
-            // Limpa apenas a contagem, mantém o login
-            localStorage.removeItem('dadosContagem');
-            window.location.href = 'dashboard.html';
+    function voltarAoInicio() {
+        // Limpa os dados de contagem e sangria para o próximo turno
+        localStorage.removeItem('dadosContagem');
+        localStorage.removeItem('totalUltimaSangria'); 
+        window.location.href = 'dashboard.html';
+    }
+
+    window.onload = function() {
+        // 1. Recupera os dados
+        const dados = JSON.parse(localStorage.getItem('dadosContagem')) || {};
+        const usuarioLogado = localStorage.getItem('usuarioLogado');
+        const SALDO_ESPERADO = 1248.50; // Ajuste este valor conforme sua necessidade de conferência
+
+        // 2. Recupera a sangria (se houver) e converte para número
+        const sangriaTexto = localStorage.getItem('totalUltimaSangria') || "R$ 0,00";
+        const valorSangriaNum = parseFloat(sangriaTexto.replace(/[R$\s.]/g, '').replace(',', '.')) || 0;
+
+        // 3. Calcula o Total Físico Contado
+        let totalContado = 0;
+        for (const valor in dados) {
+            totalContado += parseFloat(valor) * dados[valor];
         }
 
-        window.onload = function() {
-            const SALDO_ESPERADO = 1248.50;
-            const dados = JSON.parse(localStorage.getItem('dadosContagem')) || {};
-            
-            // BUSCA O NOME JÁ FORMATADO PELO SCRIPT-LOGIN.JS
-            const usuarioLogado = localStorage.getItem('usuarioLogado');
-            
-            let total = 0;
-            for (const valor in dados) {
-                total += parseFloat(valor) * dados[valor];
-            }
+        // 4. LÓGICA PRINCIPAL: Saldo Final = Total Contado - Sangria
+        const saldoFinal = totalContado - valorSangriaNum;
 
-            const diferenca = total - SALDO_ESPERADO;
+        // 5. Calcula a diferença em relação ao esperado (opcional)
+        const diferenca = saldoFinal - SALDO_ESPERADO;
 
-            // Atualiza Saldo e Diferença
-            document.getElementById('saldo-final').innerText = total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-            
-            const displayDiff = document.getElementById('diferenca-valor');
-            const sinal = diferenca > 0 ? "+ " : (diferenca < 0 ? "- " : "");
-            displayDiff.innerText = sinal + Math.abs(diferenca).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-            displayDiff.style.color = diferenca >= 0 ? "#2ecc71" : "#e91e63";
+        // Atualiza Saldo Final na tela
+        document.getElementById('saldo-final').innerText = saldoFinal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        
+        // Atualiza Diferença na tela
+        const displayDiff = document.getElementById('diferenca-valor');
+        const sinal = diferenca > 0 ? "+ " : (diferenca < 0 ? "- " : "");
+        displayDiff.innerText = sinal + Math.abs(diferenca).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        displayDiff.style.color = diferenca >= 0 ? "#2ecc71" : "#e91e63";
 
-            // ATUALIZA O NOME DO RESPONSÁVEL COM O NOME DO USUÁRIO
-            if (usuarioLogado) {
-                document.getElementById('nome-responsavel').innerText = usuarioLogado;
-            }
+        // Atualiza Nome do Responsável
+        if (usuarioLogado) {
+            document.getElementById('nome-responsavel').innerText = usuarioLogado;
+        }
 
-            // Atualiza Data e Hora
-            const agora = new Date();
-            document.getElementById('data-hora-texto').innerText = 
-                agora.toLocaleDateString('pt-BR') + " - " + 
-                agora.toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'});
+        // Atualiza Data e Hora
+        const agora = new Date();
+        document.getElementById('data-hora-texto').innerText = 
+            agora.toLocaleDateString('pt-BR') + " - " + 
+            agora.toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'});
 
-            // Efeito Confete
-            confetti({
-                particleCount: 150,
-                spread: 70,
-                origin: { y: 0.6 },
-                colors: ['#ff33cc', '#ffeb3b', '#2ecc71', '#4da3ff']
-            });
-        };
-    </script>
+        // Efeito Confete
+        confetti({
+            particleCount: 150,
+            spread: 70,
+            origin: { y: 0.6 },
+            colors: ['#ff33cc', '#ffeb3b', '#2ecc71', '#4da3ff']
+        });
+    };
+</script>
 </body>
 </html>

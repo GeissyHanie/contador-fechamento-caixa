@@ -52,3 +52,60 @@ body { background: #f8f9fc; color: #333; }
 .campo-obs textarea { width: 100%; min-height: 100px; border-radius: 12px; border: 1px solid #edf2f7; padding: 12px; outline: none; resize: vertical; }
 .campo-obs select { padding: 12px; border-radius: 12px; border: 1px solid #edf2f7; }
 .btn-finalizar { width: 100%; background: #48bb78; color: white; border: none; padding: 15px; border-radius: 12px; font-weight: 700; cursor: pointer; margin-top: 10px; }
+
+/* Isso só será ativado na hora de imprimir ou gerar PDF */
+@media print {
+    /* Esconde botões, menu de navegação e campos de entrada */
+    .navbar, .nav-btns, .btn-finalizar, textarea, select, .check-box {
+        display: none !important;
+    }
+
+    /* Esconde o painel de validação original */
+    .validacao {
+        border: none !important;
+        background: none !important;
+    }
+
+    /* Garante que o fundo da página fique branco para economizar tinta */
+    body {
+        background: white !important;
+        color: black !important;
+    }
+
+    /* Estiliza o novo campo de assinatura que vamos criar */
+    #assinatura-impressao {
+        display: block !important; /* Mostra apenas na impressão */
+        margin-top: 30px;
+        padding: 20px;
+        border-top: 2px solid #eee;
+    }
+}
+
+/* Esconde o campo de assinatura na tela normal do computador */
+#assinatura-impressao {
+    display: none;
+}
+
+@media screen {
+    #assinatura-impressao {
+        display: block; /* Mude para none se quiser esconder na tela e mostrar só no papel */
+        opacity: 0.6;
+    }
+}
+
+@media print {
+    #assinatura-impressao {
+        display: block !important;
+        margin-top: 50px;
+        border-top: 2px solid #000;
+    }
+    .btn-finalizar, .nav-btns {
+        display: none; /* Esconde botões na impressão */
+    }
+}
+
+@media print {
+    .btn-finalizar, .nav-btns, .navbar, #quem-validou, .campo-obs label {
+        display: none !important;
+    }
+}
